@@ -14,7 +14,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
@@ -81,12 +80,13 @@ public class GuiController implements Initializable{
 		
 		window.setScene(boardScene);
 	}
+
 	
 	public void setCellsToCircles(Board board) {
 		initializeCirclesArray();
 		
+		//TODO: The initialization can only be done when the pane is loaded, otherwise all the values are just null.
 		board.getCell(Position.TOPLEFT, Position.TOPLEFT).setCircle(circles[0]);
-		//circles[0].setStyle("-fx-fill: blue"); //TODO: fix error.
 		
 	}
 	
