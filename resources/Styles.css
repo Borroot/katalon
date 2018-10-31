@@ -1,0 +1,4 @@
+.theme {
+    master-color: grey;
+    -fx-background-color: derive(master-color, 70%);
+}
