@@ -13,8 +13,7 @@ public class GameController {
 	}
 	
 	private void guiGame() {
+		gui.setBoard(board);
 		gui.titleScreen();
-		gui.setCellsToCircles(board);
 	}
-	
 }

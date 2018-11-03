@@ -33,7 +33,7 @@
                   <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" />
                   
                   <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="300.0" translateY="300.0" />
-                  <Circle fx:id="circle0" fill="DODGERBLUE" onMouseClicked="#circleClicked" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-300.0" translateY="-300.0" />
+                  <Circle fx:id="circle0" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-300.0" translateY="-300.0" />
                   <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="300.0" translateY="-300.0" />
                   <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-300.0" translateY="300.0" />
                   
@@ -48,7 +48,7 @@
                   <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-300.0" translateY="100.0" />
                   
                   <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="100.0" translateY="300.0" />
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-100.0" translateY="-300.0" />
+                  <Circle fx:id="circle1" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-100.0" translateY="-300.0" />
                   <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="100.0" translateY="-300.0" />
                   <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-100.0" translateY="300.0" />
                </children>

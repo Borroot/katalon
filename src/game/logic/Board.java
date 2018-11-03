@@ -55,4 +55,7 @@ public class Board {
 		return true;
 	}
 	
+	public Cell[] getCellsArray() {
+		return cells;
+	}
 }
