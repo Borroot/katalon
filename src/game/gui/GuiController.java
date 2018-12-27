@@ -2,14 +2,12 @@ package game.gui;
 
 import game.Main;
 import game.logic.Board;
-import game.logic.Position;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
@@ -75,6 +73,10 @@ public class GuiController {
 	public GuiController() {	
 	}
 	
+	/**
+	 * @param root 
+	 * Open the window and set the root (opening screen) as scene.
+	 */
 	public void initiateScreen(Parent root) {
 		Scene scene = new Scene(root);
 		
@@ -108,16 +110,20 @@ public class GuiController {
 		boardScreen.setVisible(true);
 	}
 	
+	/**
+	 * Set the circles from the board to the visual circles.
+	 */
 	private void setCellsToCircles() {
 		initializeCirclesArray();
 		
 		for(int i = 0; i < this.board.getCellsArray().length; i++) {
 			board.getCellsArray()[i].setCircle(circles[i]);
 		}
-		
-		board.getCell(Position.CENTER, Position.BOTTOMRIGHT).getCircle().setFill(Color.BLUE);
 	}
 	
+	/**
+	 * Set all the circles to an array for easy future reference.
+	 */
 	private void initializeCirclesArray() {
 		circles[0] = circle0;
 		circles[1] = circle1;
@@ -142,6 +148,10 @@ public class GuiController {
 		circles[20] = circle20;
 	}
 	
+	/**
+	 * @param board
+	 * Set the board of the GuiController.
+	 */
 	public void setBoard(Board board) {
 		this.board = board;
 	}
