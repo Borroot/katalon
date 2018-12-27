@@ -4,7 +4,6 @@ import game.Main;
 import game.logic.Board;
 import game.logic.Position;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -74,18 +73,14 @@ public class GuiController {
 	public Circle circle20;
 	
 	public GuiController() {	
-		System.out.println("Initiated: " + this);
 	}
 	
-	public void initiateScreen(FXMLLoader fxmlLoader, Parent root) {
-		System.out.println("GuiController: " + fxmlLoader.getController());
+	public void initiateScreen(Parent root) {
 		Scene scene = new Scene(root);
 		
 		window.setScene(scene);
 		window.setTitle("Katalon");
 		window.show();
-		
-		System.out.println("FirstScreen: " + this);
 	}
 	
 	/**
@@ -101,7 +96,6 @@ public class GuiController {
 	 * Processed when the start is clicked.
 	 */
 	public void loadBoardScreen(MouseEvent e) {
-		System.out.println("FirstClick: " + this);
 		boardScreen();
 		setCellsToCircles();
 	}
@@ -112,7 +106,6 @@ public class GuiController {
 	private void boardScreen() {
 		titleScreen.setVisible(false);
 		boardScreen.setVisible(true);
-		System.out.println("BoardScreen: " + this);
 	}
 	
 	private void setCellsToCircles() {
@@ -122,7 +115,7 @@ public class GuiController {
 			board.getCellsArray()[i].setCircle(circles[i]);
 		}
 		
-		board.getCell(Position.TOPLEFT, Position.TOPLEFT).getCircle().setFill(Color.BLUE);
+		board.getCell(Position.CENTER, Position.BOTTOMRIGHT).getCircle().setFill(Color.BLUE);
 	}
 	
 	private void initializeCirclesArray() {
@@ -151,7 +144,6 @@ public class GuiController {
 	
 	public void setBoard(Board board) {
 		this.board = board;
-		System.out.println("SetBoard: " + this);
 	}
 	
 }

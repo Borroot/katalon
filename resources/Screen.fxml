@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="theme" stylesheets="@BoardScreen.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.gui.GuiController">
    <children>
-      <StackPane fx:id="boardScreen" layoutX="284.0" layoutY="302.0" prefHeight="800.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <StackPane fx:id="boardScreen" prefHeight="800.0" prefWidth="1200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Group>
                <children>
@@ -28,37 +28,37 @@
             </Group>
             <Group>
                <children>
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-100.0" translateY="-100.0" />
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="100.0" translateY="-100.0" />
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-100.0" translateY="100.0" />
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="100.0" translateY="100.0" />
+                  <Circle fx:id="circle4" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-100.0" translateY="-100.0" />
+                  <Circle fx:id="circle8" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="100.0" translateY="-100.0" />
+                  <Circle fx:id="circle11" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-100.0" translateY="100.0" />
+                  <Circle fx:id="circle15" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="100.0" translateY="100.0" />
                   
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" />
+                  <Circle fx:id="circle20" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" />
                   
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="300.0" translateY="300.0" />
+                  <Circle fx:id="circle19" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="300.0" translateY="300.0" />
                   <Circle fx:id="circle0" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-300.0" translateY="-300.0" />
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="300.0" translateY="-300.0" />
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-300.0" translateY="300.0" />
+                  <Circle fx:id="circle6" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="300.0" translateY="-300.0" />
+                  <Circle fx:id="circle13" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-300.0" translateY="300.0" />
                   
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="200.0" translateY="200.0" />
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-200.0" translateY="-200.0" />
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="200.0" translateY="-200.0" />
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-200.0" translateY="200.0" />
+                  <Circle fx:id="circle17" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="200.0" translateY="200.0" />
+                  <Circle fx:id="circle2" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-200.0" translateY="-200.0" />
+                  <Circle fx:id="circle7" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="200.0" translateY="-200.0" />
+                  <Circle fx:id="circle12" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-200.0" translateY="200.0" />
                   
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="300.0" translateY="100.0" />
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-300.0" translateY="-100.0" />
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="300.0" translateY="-100.0" />
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-300.0" translateY="100.0" />
+                  <Circle fx:id="circle16" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="300.0" translateY="100.0" />
+                  <Circle fx:id="circle3" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-300.0" translateY="-100.0" />
+                  <Circle fx:id="circle9" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="300.0" translateY="-100.0" />
+                  <Circle fx:id="circle10" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-300.0" translateY="100.0" />
                   
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="100.0" translateY="300.0" />
+                  <Circle fx:id="circle18" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="100.0" translateY="300.0" />
                   <Circle fx:id="circle1" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-100.0" translateY="-300.0" />
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="100.0" translateY="-300.0" />
-                  <Circle fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-100.0" translateY="300.0" />
+                  <Circle fx:id="circle5" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="100.0" translateY="-300.0" />
+                  <Circle fx:id="circle14" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle" translateX="-100.0" translateY="300.0" />
                </children>
             </Group>
          </children>
       </StackPane>
-      <BorderPane fx:id="titleScreen" onMouseClicked="#loadBoardScreen" prefHeight="800.0" prefWidth="1200.0" stylesheets="@TitleScreen.css">
+      <BorderPane fx:id="titleScreen" onMouseClicked="#loadBoardScreen" prefHeight="800.0" prefWidth="1200.0" stylesheets="@TitleScreen.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
