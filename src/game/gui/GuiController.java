@@ -2,34 +2,33 @@ package game.gui;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
 
 import game.Main;
 import game.logic.Board;
 import game.logic.Position;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-//TODO: when a new fxmlloader is created there is probably also a new GuiController created. This means that all the variables are different for the different scenes.
-// I tried to make the variables  but then the fxml file does not recognize them.
+//TODO: When a new fxmlloader is created there is probably also a new GuiController created. This means that all the variables are different for the different scenes.
+// I tried to make the variables static but then the fxml file does not recognize them.
 // I can make a method in the gamecontroller to return the board but that is not so nice.
 
-public class GuiController implements Initializable{
+public class GuiController {
 
-	private  Stage window = Main.getWindow();
-	private  Board board;
+	private Stage window = Main.getWindow();
+	private Board board;
 	
-	private  Circle circles[] = new Circle[21];
+	private Circle circles[] = new Circle[21];
 	
 	@FXML
-	public  BorderPane titleScreen;
+	public BorderPane titleScreen;
 	
 	/**
 	 * This cannot be done in an array.
@@ -100,16 +99,13 @@ public class GuiController implements Initializable{
 	public GuiController() {	
 	}
 	
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-	}
-	
 	/**
 	 * Set the window to the title screen.
 	 */
 	public  void titleScreen() {
 		URL location = GuiController.class.getResource("/TitleScreen.fxml");
 		FXMLLoader fxmlLoader = new FXMLLoader(location);
+		System.out.println(this.toString());
 		
 		Parent root = null;
 		try {
@@ -138,9 +134,10 @@ public class GuiController implements Initializable{
 	/**
 	 * Set the window to the board scene.
 	 */
-	private  void boardScreen() {
+	private void boardScreen() {
 		URL location = GuiController.class.getResource("/BoardScreen.fxml");
 		FXMLLoader fxmlLoader = new FXMLLoader(location);
+		System.out.println(this.toString());
 		
 		Parent boardPane = null;
 		try {
@@ -161,7 +158,7 @@ public class GuiController implements Initializable{
 			board.getCellsArray()[i].setCircle(circles[i]);
 		}
 		
-		System.out.println(board.getCell(Position.TOPLEFT, Position.TOPLEFT).getCircle());
+		board.getCell(Position.TOPLEFT, Position.TOPLEFT).getCircle().setFill(Color.BLUE);
 	}
 	
 	private void initializeCirclesArray() {
@@ -189,7 +186,7 @@ public class GuiController implements Initializable{
 		circles[20] = circle20;
 	}
 	
-	public  void setBoard(Board board) {
+	public void setBoard(Board board) {
 		this.board = board;
 	}
 	
