@@ -99,4 +99,39 @@ public class Logic {
 		return cellNumber == 4 || cellNumber == 8 || cellNumber == 11 || cellNumber == 15;
 	}
 	
+	/**
+	 * @param cellNumber
+	 * @param prevMove
+	 * @return Return an Position-array with as elements the squares a given cellNumber is in.
+	 */
+	public static Position[] getSquares(int cellNumber) {
+		assert(cellNumber >= 0 && cellNumber < 21);
+		
+		Position[] pos;
+		
+		if(Logic.isDoubleCell(cellNumber)) {
+			pos = new Position[2];
+			switch(cellNumber) {
+				case 4: pos[0] = Position.TOPLEFT; pos[1] = Position.CENTER; break;
+				case 8: pos[0] = Position.TOPRIGHT; pos[1] = Position.CENTER; break;
+				case 11: pos[0] = Position.BOTTOMLEFT; pos[1] = Position.CENTER; break;
+				case 15: pos[0] = Position.BOTTOMRIGHT; pos[1] = Position.CENTER; break;
+			}
+		}else{
+			pos = new Position[1];
+			if(cellNumber < 5)
+				pos[0] = Position.TOPLEFT;
+			else if(cellNumber < 10)
+				pos[0] = Position.TOPRIGHT;
+			else if(cellNumber < 15)
+				pos[0] = Position.BOTTOMLEFT;
+			else if(cellNumber < 20)
+				pos[0] = Position.BOTTOMRIGHT;
+			else
+				pos[0] = Position.CENTER;
+		}
+		
+		return pos;
+	}
+	
 }

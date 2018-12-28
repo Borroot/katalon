@@ -27,17 +27,17 @@ public abstract class XvX {
 	 * Ask the Player which square the first move belongs to.
 	 * This will be different for Humans then for Computers.
 	 */
-	protected abstract int firstMoveIsDouble();
+	protected abstract int firstMoveIsDouble(int cellNumber);
 	
 	/**
 	 * @param cellNumber
 	 * Make the move if the move is valid and check if it's game over.
 	 */
 	protected void move(int cellNumber) {
-		if(prevMove == -1 && Logic.isDoubleCell(cellNumber))
-			prevMove = firstMoveIsDouble();
 		
-		if(Logic.validMove(board, cellNumber, prevMove, prevprevMove)) {
+		if(prevMove == -1 && Logic.isDoubleCell(cellNumber))
+			prevMove = firstMoveIsDouble(cellNumber);
+		else if(Logic.validMove(board, cellNumber, prevMove, prevprevMove)) {
 			prevMove = cellNumber;
 			prevprevMove = prevMove;
 			if(onTurn == Player.YELLOW) {

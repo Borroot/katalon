@@ -69,5 +69,22 @@
             </VBox>
          </center>
       </BorderPane>
+      <StackPane fx:id="chooseSquareScreen" layoutX="10.0" layoutY="10.0" prefHeight="810.0" prefWidth="1210.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Group>
+               <children>
+                  <Rectangle fx:id="centerSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="300.0" layoutX="200.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="300.0" />
+                  <Rectangle fx:id="bottomrightSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="300.0" layoutX="400.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="300.0" />
+                  <Rectangle fx:id="toprightSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="300.0" layoutX="400.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="300.0" />
+                  <Rectangle fx:id="bottomleftSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="300.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="300.0" />
+                  <Rectangle fx:id="topleftSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="300.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="300.0" />
+                  <Rectangle fx:id="topleftSmallSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="200.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="100.0" />
+                  <Rectangle fx:id="toprightSmallSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="400.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="100.0" />
+                  <Rectangle fx:id="bottomrightSmallSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="400.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="100.0" />
+                  <Rectangle fx:id="bottomleftSmallSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="200.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="100.0" />
+               </children>
+            </Group>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

@@ -1,6 +1,7 @@
 package game.modes;
 
 import game.gui.GuiController;
+import game.logic.Logic;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
@@ -27,10 +28,12 @@ public class PvPGameMode extends XvX{
 		});
 	}
 
+	/* (non-Javadoc)
+	 * @see game.modes.XvX#firstMoveIsDouble(int)
+	 */
 	@Override
-	protected int firstMoveIsDouble() {
-		// TODO: Ask what square it belongs to and then return the cellNumber from the centre-cell.
-		return 0;
+	protected int firstMoveIsDouble(int cellNumber) {
+		return gui.chooseSquareScreen(Logic.getSquares(cellNumber));
 	}
 }
 

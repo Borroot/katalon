@@ -2,6 +2,9 @@ package game.gui;
 
 import game.Main;
 import game.logic.Board;
+import game.logic.Position;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
@@ -10,8 +13,11 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 public class GuiController {
@@ -23,10 +29,34 @@ public class GuiController {
 	
 	private IntegerProperty circleNumber = new SimpleIntegerProperty(-1);
 	
+	private boolean chosen = false;
+	
 	@FXML
 	public BorderPane titleScreen;
 	@FXML
 	public StackPane boardScreen;
+	@FXML
+	public StackPane chooseSquareScreen;
+	
+	@FXML
+	public Rectangle topleftSquare;
+	@FXML
+	public Rectangle toprightSquare;
+	@FXML
+	public Rectangle centerSquare;
+	@FXML
+	public Rectangle bottomleftSquare;
+	@FXML
+	public Rectangle bottomrightSquare;
+	
+	@FXML
+	public Rectangle topleftSmallSquare;
+	@FXML
+	public Rectangle toprightSmallSquare;
+	@FXML
+	public Rectangle bottomleftSmallSquare;
+	@FXML
+	public Rectangle bottomrightSmallSquare;
 	
 	/**
 	 * This cannot be done in an array.
@@ -95,6 +125,7 @@ public class GuiController {
 	public void titleScreen() {
 		boardScreen.setVisible(false);
 		titleScreen.setVisible(true);
+		chooseSquareScreen.setVisible(false);
 	}
 	
 	/**
@@ -112,6 +143,7 @@ public class GuiController {
 	private void boardScreen() {
 		titleScreen.setVisible(false);
 		boardScreen.setVisible(true);
+		chooseSquareScreen.setVisible(false);
 	}
 	
 	/**
@@ -128,6 +160,69 @@ public class GuiController {
 			}
 		}
 		circleNumber.set(-1);
+	}
+	
+	/**
+	 * Load the screen where a square can be chosen.
+	 * The ones which you can choose from are in another color.
+	 */
+	public int chooseSquareScreen(Position[] pos) {
+		titleScreen.setVisible(false);
+		boardScreen.setVisible(false);
+		chooseSquareScreen.setVisible(true);
+		
+		centerSquare.setFill(Color.ORANGE); // pos[1] is always the centre square
+		getRectangle(pos[0]).setFill(Color.ORANGE);
+		
+		Rectangle[] smallRectangles = smallRectangleArray();
+		for(int i = 0; i < smallRectangles.length; i++) {
+			if(smallRectangles[i] != getSmallRectangle(pos[0])) {
+				smallRectangles[i].setFill(Color.ORANGE);
+			}		
+		}
+		
+		//TODO: Finish user input square.
+		return 0;
+	}
+	
+	public void rectangleClicked(MouseEvent e) {
+		//TODO: Extract the right number.
+	}
+	
+	/**
+	 * @param pos
+	 * @return The correct rectangle given a position.
+	 */
+	private Rectangle getRectangle(Position pos) {
+		switch(pos) {
+			case TOPLEFT: 		return topleftSquare;
+			case TOPRIGHT: 		return toprightSquare;
+			case BOTTOMLEFT: 	return bottomleftSquare;
+			case BOTTOMRIGHT: 	return bottomrightSquare;
+			default: return null;
+		}
+	}
+	
+	/**
+	 * @param pos
+	 * @return The correct small rectangle given a position.
+	 */
+	private Rectangle getSmallRectangle(Position pos) {
+		switch(pos) {
+			case TOPLEFT: 		return topleftSmallSquare;
+			case TOPRIGHT: 		return toprightSmallSquare;
+			case BOTTOMLEFT: 	return bottomleftSmallSquare;
+			case BOTTOMRIGHT: 	return bottomrightSmallSquare;
+			default: return null;
+		}
+	}
+	
+	/**
+	 * @return An array with all four small rectangles.
+	 */
+	private Rectangle[] smallRectangleArray() {
+		Rectangle[] rectangles = {topleftSmallSquare, toprightSmallSquare, bottomleftSmallSquare, bottomrightSmallSquare};
+		return rectangles;
 	}
 	
 	/**
