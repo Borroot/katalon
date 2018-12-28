@@ -95,4 +95,8 @@ public class Logic {
 			&& square[3].getOccupy() == square[4].getOccupy();
 	}
 	
+	public static boolean isDoubleCell(int cellNumber) {
+		return cellNumber == 4 || cellNumber == 8 || cellNumber == 11 || cellNumber == 15;
+	}
+	
 }
