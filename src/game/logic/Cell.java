@@ -1,5 +1,6 @@
 package game.logic;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class Cell {
@@ -14,8 +15,25 @@ public class Cell {
 		occupies = Player.NONE;
 	}
 	
+	/**
+	 * @param player
+	 * Change occupies to the player and change the color accordingly.
+	 */
 	public void setOccupy(Player player) {
 		occupies = player;
+		setColor();
+	}
+	
+	/**
+	 * When the Cell gets occupied the color is automatically changed.
+	 */
+	private void setColor() {
+		if(occupies == Player.YELLOW)
+			this.getCircle().setFill(Color.rgb(252, 255, 76));
+		else if(occupies == Player.RED)
+			this.getCircle().setFill(Color.INDIANRED);
+		else
+			this.getCircle().setFill(Color.DODGERBLUE);
 	}
 	
 	/**

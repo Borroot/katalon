@@ -12,7 +12,7 @@ import java.util.Arrays;
  * | 3 | 4| 8|  9|
  * ------ 20 -----
  * |10 |11|15| 16|
- * |  12▔▔|▔▔ 17 |
+ * |  12▔|▔        17  |
  * |13  14|18  19|
  * ▔▔▔▔▔▔▔▔▔▔▔▔▔
  */
@@ -59,6 +59,11 @@ public class Board {
 		}
 		
 		return square; 
+	}
+	
+	public Position getSquarePosition(int cellNumber, int prevMove) {
+		
+		return null;
 	}
 	
 	public boolean isFull() {

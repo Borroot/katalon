@@ -2,6 +2,8 @@ package game.gui;
 
 import game.Main;
 import game.logic.Board;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,6 +20,8 @@ public class GuiController {
 	private Board board;
 	
 	private Circle circles[] = new Circle[21];
+	
+	private IntegerProperty circleNumber = new SimpleIntegerProperty(-1);
 	
 	@FXML
 	public BorderPane titleScreen;
@@ -111,6 +115,22 @@ public class GuiController {
 	}
 	
 	/**
+	 * @param e
+	 * Whenever a circle is clicked this method is called.
+	 * The circleNumberProperty is updated to the according circleNumber.
+	 * This value can be used by listeners. The listeners should check whether the 
+	 * value is equal to -1, if this is the case then the value should be discarded.
+	 */
+	public void circleClicked(MouseEvent e) {
+		for(int i = 0; i < board.getCellsArray().length; i++) {
+			if(e.getSource() == board.getCellsArray()[i].getCircle()) {
+				circleNumber.set(i);
+			}
+		}
+		circleNumber.set(-1);
+	}
+	
+	/**
 	 * Set the circles from the board to the visual circles.
 	 */
 	private void setCellsToCircles() {
@@ -154,6 +174,18 @@ public class GuiController {
 	 */
 	public void setBoard(Board board) {
 		this.board = board;
+	}
+	
+	public Board getBoard() {
+		return board;
+	}
+	
+	public IntegerProperty getCircleNumberProperty() {
+		return circleNumber;
+	}
+	
+	public int getCircleNumber() {
+		return circleNumber.get();
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.net.URL;
 
 import game.gui.GuiController;
 import game.logic.Board;
+import game.modes.PvPGameMode;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
@@ -19,6 +20,7 @@ public class GameController {
 	
 	public GameController() {
 		guiGame();
+		new PvPGameMode(gui);
 	}
 	
 	
