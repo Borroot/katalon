@@ -102,7 +102,8 @@ public class Logic {
 	/**
 	 * @param cellNumber
 	 * @param prevMove
-	 * @return Return an Position-array with as elements the squares a given cellNumber is in.
+	 * @return 	Return an Position-array with as elements the squares a given cellNumber is in.
+	 * 			If the cellNumber is in two squares the last element is always the centre square.
 	 */
 	public static Position[] getSquares(int cellNumber) {
 		assert(cellNumber >= 0 && cellNumber < 21);

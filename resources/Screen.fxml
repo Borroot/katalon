@@ -73,15 +73,15 @@
          <children>
             <Group>
                <children>
-                  <Rectangle fx:id="centerSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="300.0" layoutX="200.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="300.0" />
-                  <Rectangle fx:id="bottomrightSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="300.0" layoutX="400.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="300.0" />
-                  <Rectangle fx:id="toprightSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="300.0" layoutX="400.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="300.0" />
-                  <Rectangle fx:id="bottomleftSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="300.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="300.0" />
-                  <Rectangle fx:id="topleftSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="300.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="300.0" />
-                  <Rectangle fx:id="topleftSmallSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="200.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="100.0" />
-                  <Rectangle fx:id="toprightSmallSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="400.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="100.0" />
-                  <Rectangle fx:id="bottomrightSmallSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="400.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="100.0" />
-                  <Rectangle fx:id="bottomleftSmallSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="200.0" layoutY="400.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="100.0" />
+                  <Rectangle fx:id="centerSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="300.0" layoutX="200.0" layoutY="200.0" onMouseClicked="#rectangleClicked" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="300.0" />
+                  <Rectangle fx:id="bottomrightSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="300.0" layoutX="400.0" layoutY="400.0" onMouseClicked="#rectangleClicked" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="300.0" />
+                  <Rectangle fx:id="toprightSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="300.0" layoutX="400.0" onMouseClicked="#rectangleClicked" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="300.0" />
+                  <Rectangle fx:id="bottomleftSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="300.0" layoutY="400.0" onMouseClicked="#rectangleClicked" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="300.0" />
+                  <Rectangle fx:id="topleftSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="300.0" onMouseClicked="#rectangleClicked" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="300.0" />
+                  <Rectangle fx:id="topleftSmallSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="200.0" layoutY="200.0" onMouseClicked="#rectangleClicked" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="100.0" />
+                  <Rectangle fx:id="toprightSmallSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="400.0" layoutY="200.0" onMouseClicked="#rectangleClicked" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="100.0" />
+                  <Rectangle fx:id="bottomrightSmallSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="400.0" layoutY="400.0" onMouseClicked="#rectangleClicked" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="100.0" />
+                  <Rectangle fx:id="bottomleftSmallSquare" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="200.0" layoutY="400.0" onMouseClicked="#rectangleClicked" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="100.0" />
                </children>
             </Group>
          </children>

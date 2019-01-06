@@ -28,9 +28,7 @@ public class PvPGameMode extends XvX{
 		});
 	}
 
-	/* (non-Javadoc)
-	 * @see game.modes.XvX#firstMoveIsDouble(int)
-	 */
+	//TODO: Transform this into a listener (event-driven-programming).
 	@Override
 	protected int firstMoveIsDouble(int cellNumber) {
 		return gui.chooseSquareScreen(Logic.getSquares(cellNumber));

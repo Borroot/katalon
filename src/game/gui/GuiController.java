@@ -3,8 +3,6 @@ package game.gui;
 import game.Main;
 import game.logic.Board;
 import game.logic.Position;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
@@ -17,7 +15,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 
 public class GuiController {
@@ -29,7 +26,8 @@ public class GuiController {
 	
 	private IntegerProperty circleNumber = new SimpleIntegerProperty(-1);
 	
-	private boolean chosen = false;
+	private Rectangle doubleSmallRectangle;
+	private Rectangle bigRectangle;
 	
 	@FXML
 	public BorderPane titleScreen;
@@ -164,7 +162,7 @@ public class GuiController {
 	
 	/**
 	 * Load the screen where a square can be chosen.
-	 * The ones which you can choose from are in another color.
+	 * The ones which you can choose from are in another colour.
 	 */
 	public int chooseSquareScreen(Position[] pos) {
 		titleScreen.setVisible(false);
@@ -172,21 +170,27 @@ public class GuiController {
 		chooseSquareScreen.setVisible(true);
 		
 		centerSquare.setFill(Color.ORANGE); // pos[1] is always the centre square
-		getRectangle(pos[0]).setFill(Color.ORANGE);
+		
+		bigRectangle = getRectangle(pos[0]);
+		bigRectangle.setFill(Color.ORANGE);
 		
 		Rectangle[] smallRectangles = smallRectangleArray();
+		doubleSmallRectangle = getSmallRectangle(pos[0]);
+		
 		for(int i = 0; i < smallRectangles.length; i++) {
-			if(smallRectangles[i] != getSmallRectangle(pos[0])) {
+			if(smallRectangles[i] != doubleSmallRectangle) {
 				smallRectangles[i].setFill(Color.ORANGE);
 			}		
 		}
 		
 		//TODO: Finish user input square.
+		
 		return 0;
 	}
 	
 	public void rectangleClicked(MouseEvent e) {
 		//TODO: Extract the right number.
+		System.out.println("Clicked: " + e.getSource());
 	}
 	
 	/**
