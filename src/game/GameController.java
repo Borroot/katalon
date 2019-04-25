@@ -30,11 +30,12 @@ public class GameController {
 	 * At last the screen is initialized (in the correct GuiController).
 	 */
 	private void guiGame() {
-		URL location = GuiController.class.getResource("/Screen.fxml");
+		URL location = GuiController.class.getResource("/resources/Screen.fxml");
 		FXMLLoader fxmlLoader = new FXMLLoader(location);
 		
 		Parent root = null;
 		try {
+		    System.out.println(location);
 			root = fxmlLoader.load();
 		} catch (IOException e) {
 			System.out.println("Could not load the fxml file: " + location);
