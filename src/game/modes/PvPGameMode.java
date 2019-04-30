@@ -9,7 +9,7 @@ public class PvPGameMode extends XvX{
 
 	public PvPGameMode(GuiController gui) {
 		super(gui);
-		setListener();
+		setListenerCircleClicked();
 		setListenerChooseSquare();
 	}
 	
@@ -17,7 +17,7 @@ public class PvPGameMode extends XvX{
 	 * The circleNumber property from the GuiController is connected to this listener.
 	 * Whenever a circle is clicked the method to make the move is called.
 	 */
-	private void setListener() {
+	private void setListenerCircleClicked() {
 		gui.getCircleNumberProperty().addListener(new ChangeListener<Object>(){
 			@Override
 			public void changed(ObservableValue<?> o, Object oldVal, Object newVal) {

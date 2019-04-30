@@ -1,7 +1,9 @@
 package game.logic;
 
 public class Logic {
-	
+
+    private static final int AMOUNT_OF_STONES = 12;
+
 	/**
 	 * This class should not be instantiated.
 	 */
@@ -11,12 +13,13 @@ public class Logic {
 	/**
 	 * @param board
 	 * @param cellNumber
-	 * @param previousMove
+	 * @param prevMove
+	 * @param prevprevMove
 	 * @return If a move is valid or not.
 	 */
-	public static boolean validMove(Board board, int cellNumber, int prevMove, int prevprevMove) {
-		if(gameIsOver(board))
-			return false;
+	public static boolean validMove(Board board, Player onTurn, int cellNumber, int prevMove, int prevprevMove) {
+	    if(gameIsOver(board, onTurn))
+	    	return false;
 		if(prevMove == -1)
 			return true;
 		
@@ -30,26 +33,22 @@ public class Logic {
 	 * 	1. One square is filled by a single Player.
 	 * 	2. The whole board is filled.
 	 * 	3. One Player cannot make a move because it doesn't have stones left.
-	 * 	   Each player has TODO: (amount of stones) stones.
 	 *
 	 * @param board
 	 * @return If a board state is game over or not.
 	 */
-	public static boolean gameIsOver(Board board) {
-		if(oneSquareIsFull(board))
-			return true;
-		if(stonesEmpty(board))
-			return true;
-		if(board.isFull())
-			return true;
-		
-		return false;
+	public static boolean gameIsOver(Board board, Player onTurn) {
+		return oneSquareIsFull(board) || stonesEmpty(board, onTurn) || board.isFull();
 	}
 	
-	private static boolean stonesEmpty(Board board) {
-		//TODO: Implement if someone doesn't have any stones left.
-		
-		return false;
+	private static boolean stonesEmpty(Board board, Player onTurn) {
+	    Cell[] cells = board.getCellsArray();
+	    int count = 0;
+	    for(Cell cell : cells){
+	    	if(cell.getOccupy() == onTurn)
+	    		count++;
+		}
+		return count >= AMOUNT_OF_STONES;
 	}
 	
 	/**
@@ -57,29 +56,12 @@ public class Logic {
 	 * @return If one of the squares is full.
 	 */
 	private static boolean oneSquareIsFull(Board board) {
-		
-		Cell[] square;
-		
-		square = board.getSquare(Position.TOPLEFT);
-		if(thisSquareIsFull(square))
-			return true;
-		
-		square = board.getSquare(Position.TOPRIGHT);
-		if(thisSquareIsFull(square))
-			return true;
-		
-		square = board.getSquare(Position.CENTER);
-		if(thisSquareIsFull(square))
-			return true;
-		
-		square = board.getSquare(Position.BOTTOMLEFT);
-		if(thisSquareIsFull(square))
-			return true;
-		
-		square = board.getSquare(Position.BOTTOMRIGHT);
-		if(thisSquareIsFull(square))
-			return true;
-		
+		for(Position pos : Position.values()){
+			Cell[] square;
+			square = board.getSquare(pos);
+			if(thisSquareIsFull(square))
+				return true;
+		}
 		return false;
 	}
 	
@@ -88,11 +70,14 @@ public class Logic {
 	 * @return If this square is full, aka all cells are occupied by the same Player which not Player.NONE.
 	 */
 	private static boolean thisSquareIsFull(Cell[] square) {
-		return square[0].getOccupy() != Player.NONE
-			&& square[0].getOccupy() == square[1].getOccupy()
-			&& square[1].getOccupy() == square[2].getOccupy()
-			&& square[2].getOccupy() == square[3].getOccupy()
-			&& square[3].getOccupy() == square[4].getOccupy();
+		if(square[0].getOccupy() == Player.NONE)
+		    return false;
+
+		for(int i = 0; i < 3; i++)
+			if(square[i].getOccupy() != square[i+1].getOccupy())
+			    return false;
+
+		return true;
 	}
 	
 	public static boolean isDoubleCell(int cellNumber) {
@@ -101,7 +86,6 @@ public class Logic {
 	
 	/**
 	 * @param cellNumber
-	 * @param prevMove
 	 * @return 	Return an Position-array with as elements the squares a given cellNumber is in.
 	 * 			If the cellNumber is in two squares the last element is always the centre square.
 	 */

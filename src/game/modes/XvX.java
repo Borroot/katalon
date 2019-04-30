@@ -41,14 +41,14 @@ public abstract class XvX {
 			prevMove = firstMoveIsDouble(cellNumber);
 			board.getCellsArray()[cellNumber].setOccupy(onTurn);
 			changeTurn();
-		}else if (Logic.validMove(board, cellNumber, prevMove, prevprevMove)) {
+		}else if (Logic.validMove(board, onTurn, cellNumber, prevMove, prevprevMove)) {
 			prevMove = cellNumber;
 			prevprevMove = prevMove;
             board.getCellsArray()[cellNumber].setOccupy(onTurn);
             changeTurn();
 		}
 
-		if (Logic.gameIsOver(board)) {
+		if (Logic.gameIsOver(board, onTurn)) {
 			System.out.println("Game Over!");
 		}
 	}
