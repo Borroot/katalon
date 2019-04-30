@@ -4,6 +4,7 @@ import game.gui.GuiController;
 import game.logic.Board;
 import game.logic.Logic;
 import game.logic.Player;
+import game.logic.Position;
 
 public abstract class XvX {
 
@@ -11,8 +12,9 @@ public abstract class XvX {
 	private Board board;
 	private Player onTurn = Player.RED;
 
-	private int prevprevMove = -1;
-	protected int prevMove = -1;
+	protected int tempCellNumber;
+	protected Position prevMoveCircle = null;
+	protected Position prevMoveSquare = null;
 
 	public XvX() {
 	}
@@ -25,25 +27,25 @@ public abstract class XvX {
 	/**
 	 * Ask the Player which square the first move belongs to.
 	 * This will be different for Humans then for Computers.
-	 *
 	 * @return Square number.
 	 */
-	protected abstract int firstMoveIsDouble(int cellNumber);
+	protected abstract Position firstMoveIsDouble(int cellNumber);
 
 	/**
 	 * Make the move if the move is valid and check if it's game over.
-	 *
 	 * @param cellNumber
 	 */
 	protected void move(int cellNumber) {
+		System.out.println(prevMoveSquare + " " + prevMoveCircle);
 
-		if (prevMove == -1 && Logic.isDoubleCell(cellNumber)){
-			prevMove = firstMoveIsDouble(cellNumber);
+		if (prevMoveSquare == null && Logic.isDoubleCell(cellNumber)){
+			tempCellNumber = cellNumber;
+			prevMoveSquare = firstMoveIsDouble(cellNumber);
 			board.getCellsArray()[cellNumber].setOccupy(onTurn);
 			changeTurn();
-		}else if (Logic.validMove(board, onTurn, cellNumber, prevMove, prevprevMove)) {
-			prevMove = cellNumber;
-			prevprevMove = prevMove;
+		}else if (Logic.validMove(board, onTurn, cellNumber, prevMoveCircle, prevMoveSquare)) {
+			prevMoveCircle = Logic.getCircle(cellNumber, prevMoveSquare);
+			prevMoveSquare = Logic.getSquare(cellNumber, prevMoveSquare);
             board.getCellsArray()[cellNumber].setOccupy(onTurn);
             changeTurn();
 		}

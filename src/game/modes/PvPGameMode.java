@@ -2,6 +2,7 @@ package game.modes;
 
 import game.gui.GuiController;
 import game.logic.Logic;
+import game.logic.Position;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
@@ -39,8 +40,11 @@ public class PvPGameMode extends XvX{
 			public void changed(ObservableValue<?> o, Object oldVal, Object newVal) {
 				if((int)newVal == -1)
 					return;
-				else
-				    setPrevMove((int)newVal);
+				else{ // NOTE: The newVal in this function is always the centre circle!
+				    Position prevMoveSquare = Logic.getSquares((int)newVal)[0];
+					Position prevMoveCircle = Logic.getCircleCurrent(PvPGameMode.super.tempCellNumber, prevMoveSquare);
+					setPrevMove(prevMoveCircle, prevMoveSquare);
+				}
 			}
 		});
 	}
@@ -49,16 +53,17 @@ public class PvPGameMode extends XvX{
 	 * This function loads the calls the function in the gui so the player can choose to which square
 	 * the first move belongs.
 	 * @param cellNumber
-	 * @return -1, the real value is set using event driven functions.
+	 * @return null, the real value is set using event driven functions, so this is just a placeholder.
 	 */
 	@Override
-	protected int firstMoveIsDouble(int cellNumber) {
+	protected Position firstMoveIsDouble(int cellNumber) {
 	    gui.chooseSquareScreen(Logic.getSquares(cellNumber));
-		return -1;
+		return null;
 	}
 
-	public void setPrevMove(int prevMove){
-		super.prevMove = prevMove;
+	private void setPrevMove(Position prevMoveCircle, Position prevMoveSquare){
+		super.prevMoveCircle = prevMoveCircle;
+		super.prevMoveSquare = prevMoveSquare;
 	}
 }
 

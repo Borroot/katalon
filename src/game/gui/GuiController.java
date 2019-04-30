@@ -192,16 +192,17 @@ public class GuiController {
 	public void rectangleClicked(MouseEvent e) {
 		if(e.getSource() instanceof Rectangle){
 			Rectangle rec = (Rectangle)e.getSource();
-			if(rec.getFill() == Color.ORANGE)
+			if(rec.getFill() == Color.ORANGE){
 				squareNumber.set(20);
+				chooseSquareScreen.setVisible(false);
+				boardScreen.setVisible(true);
+			}
 			else if(rec.getFill() == Color.ORANGERED){
 				squareNumber.set(Logic.getCenter(getPosition(rec)));
+				chooseSquareScreen.setVisible(false);
+				boardScreen.setVisible(true);
 			}
-
-			chooseSquareScreen.setVisible(false);
-			boardScreen.setVisible(true);
 		}
-		System.out.println("Clicked: " + e.getTarget());
 	}
 	
 	/**

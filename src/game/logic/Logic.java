@@ -1,5 +1,7 @@
 package game.logic;
 
+import javafx.geometry.Pos;
+
 public class Logic {
 
     private static final int AMOUNT_OF_STONES = 12;
@@ -13,18 +15,37 @@ public class Logic {
 	/**
 	 * @param board
 	 * @param cellNumber
-	 * @param prevMove
-	 * @param prevprevMove
+	 * @param prevMoveCircle
+	 * @param prevMoveSquare
 	 * @return If a move is valid or not.
 	 */
-	public static boolean validMove(Board board, Player onTurn, int cellNumber, int prevMove, int prevprevMove) {
+	public static boolean validMove(Board board, Player onTurn, int cellNumber, Position prevMoveCircle, Position prevMoveSquare) {
 	    if(gameIsOver(board, onTurn))
 	    	return false;
-		if(prevMove == -1)
+		if(prevMoveCircle == null || prevMoveSquare == null)
 			return true;
 		
 		//TODO: Finish if a move is valid.
-		
+
+		// square is according to prevmove
+        Position[] pos = getSquares(cellNumber);
+        if(pos.length == 1){
+        	// non-double square
+
+		}else{
+        	// double square
+
+		}
+
+        // cell is taken
+		if(!board.getCellsArray()[cellNumber].isFree()){
+		    // the square is full
+
+		}else{
+		    // the square is not full
+
+		}
+
 		return true;
 	}
 	
@@ -73,7 +94,7 @@ public class Logic {
 		if(square[0].getOccupy() == Player.NONE)
 		    return false;
 
-		for(int i = 0; i < 3; i++)
+		for(int i = 0; i < 4; i++)
 			if(square[i].getOccupy() != square[i+1].getOccupy())
 			    return false;
 
@@ -117,6 +138,68 @@ public class Logic {
 		}
 		
 		return pos;
+	}
+
+	/**
+	 * @param cellNumber
+	 * @param prevMoveSquare
+	 * @return The square the current cellnumber belongs to.
+	 */
+	public static Position getSquare(int cellNumber, Position prevMoveSquare){
+		if(isDoubleCell(cellNumber)){
+			if(prevMoveSquare == Position.CENTER)
+				return getSquares(cellNumber)[0];
+			else
+				return getSquares(cellNumber)[1];
+		}else{
+			return getSquares(cellNumber)[0];
+		}
+	}
+
+	/**
+	 * @param cellNumber
+	 * @param prevMoveSquare
+	 * @return The position the current cellnumber corresponds to.
+	 */
+	public static Position getCircle(int cellNumber, Position prevMoveSquare){
+		if(isDoubleCell(cellNumber)){
+			Position pos = getSquare(cellNumber, prevMoveSquare);
+			if(pos == Position.CENTER){
+				switch (cellNumber){
+					case 4:	return Position.TOPLEFT;
+					case 8: return Position.TOPRIGHT;
+					case 11: return Position.BOTTOMLEFT;
+					case 15: return Position.BOTTOMRIGHT;
+				}
+			}else{
+				switch(cellNumber){
+					case 4: return Position.BOTTOMRIGHT;
+					case 8: return Position.BOTTOMLEFT;
+					case 11: return Position.TOPRIGHT;
+					case 15: return Position.TOPLEFT;
+				}
+			}
+		}
+		return null;
+	}
+
+	public static Position getCircleCurrent(int cellNumber, Position currentMoveSquare){
+		if(currentMoveSquare == Position.CENTER){
+			switch (cellNumber){
+				case 4:	return Position.TOPLEFT;
+				case 8: return Position.TOPRIGHT;
+				case 11: return Position.BOTTOMLEFT;
+				case 15: return Position.BOTTOMRIGHT;
+			}
+		}else{
+			switch(cellNumber){
+				case 4: return Position.BOTTOMRIGHT;
+				case 8: return Position.BOTTOMLEFT;
+				case 11: return Position.TOPRIGHT;
+				case 15: return Position.TOPLEFT;
+			}
+		}
+		return null;
 	}
 
 	/**
