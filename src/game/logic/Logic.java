@@ -134,5 +134,20 @@ public class Logic {
 		
 		return pos;
 	}
+
+	/**
+	 * @param pos
+	 * @return Return the centre circle of a given square.
+	 */
+	public static int getCenter(Position pos){
+		switch (pos){
+			case TOPLEFT:		return 2;
+			case TOPRIGHT:		return 7;
+			case BOTTOMLEFT:	return 12;
+			case BOTTOMRIGHT:	return 17;
+			case CENTER:		return 20;
+			default: return -1;
+		}
+	}
 	
 }

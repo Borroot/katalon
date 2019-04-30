@@ -2,10 +2,12 @@ package game.gui;
 
 import game.Main;
 import game.logic.Board;
+import game.logic.Logic;
 import game.logic.Position;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -25,6 +27,7 @@ public class GuiController {
 	private Circle circles[] = new Circle[21];
 	
 	private IntegerProperty circleNumber = new SimpleIntegerProperty(-1);
+	private IntegerProperty squareNumber = new SimpleIntegerProperty(-1);
 	
 	private Rectangle doubleSmallRectangle;
 	private Rectangle bigRectangle;
@@ -162,7 +165,7 @@ public class GuiController {
 	 * Load the screen where a square can be chosen.
 	 * The ones which you can choose from are in another colour.
 	 */
-	public int chooseSquareScreen(Position[] pos) {
+	public void chooseSquareScreen(Position[] pos) {
 		titleScreen.setVisible(false);
 		boardScreen.setVisible(false);
 		chooseSquareScreen.setVisible(true);
@@ -170,7 +173,7 @@ public class GuiController {
 		centerSquare.setFill(Color.ORANGE); // pos[1] is always the centre square
 		
 		bigRectangle = getRectangle(pos[0]);
-		bigRectangle.setFill(Color.ORANGE);
+		bigRectangle.setFill(Color.ORANGERED);
 		
 		Rectangle[] smallRectangles = smallRectangleArray();
 		doubleSmallRectangle = getSmallRectangle(pos[0]);
@@ -180,15 +183,25 @@ public class GuiController {
 				smallRectangles[i].setFill(Color.ORANGE);
 			}		
 		}
-		
-		//TODO: Finish user input square.
-		
-		return 0;
 	}
-	
+
+	/**
+	 * Set the squareNumber property to the correct center circle of the right square.
+	 * @param e
+	 */
 	public void rectangleClicked(MouseEvent e) {
-		//TODO: Extract the right number.
-		System.out.println("Clicked: " + e.getSource());
+		if(e.getSource() instanceof Rectangle){
+			Rectangle rec = (Rectangle)e.getSource();
+			if(rec.getFill() == Color.ORANGE)
+				squareNumber.set(20);
+			else if(rec.getFill() == Color.ORANGERED){
+				squareNumber.set(Logic.getCenter(getPosition(rec)));
+			}
+
+			chooseSquareScreen.setVisible(false);
+			boardScreen.setVisible(true);
+		}
+		System.out.println("Clicked: " + e.getTarget());
 	}
 	
 	/**
@@ -203,6 +216,23 @@ public class GuiController {
 			case BOTTOMRIGHT: 	return bottomrightSquare;
 			default: return null;
 		}
+	}
+
+	/**
+	 * @param rec
+	 * @return The correct position given a rectangle.
+	 */
+	private Position getPosition(Rectangle rec){
+		if (topleftSquare.equals(rec)) {
+			return Position.TOPLEFT;
+		} else if (toprightSquare.equals(rec)) {
+			return Position.TOPRIGHT;
+		} else if (bottomleftSquare.equals(rec)) {
+			return Position.BOTTOMLEFT;
+		} else if (bottomrightSquare.equals(rec)) {
+			return Position.BOTTOMRIGHT;
+		}
+		return null;
 	}
 	
 	/**
@@ -279,6 +309,10 @@ public class GuiController {
 	
 	public IntegerProperty getCircleNumberProperty() {
 		return circleNumber;
+	}
+
+	public IntegerProperty getSquareNumberProperty() {
+		return squareNumber;
 	}
 	
 	public int getCircleNumber() {
