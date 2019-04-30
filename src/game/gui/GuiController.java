@@ -56,9 +56,7 @@ public class GuiController {
 	@FXML
 	public Rectangle bottomrightSmallSquare;
 	
-	/**
-	 * This cannot be done in an array.
-	 */
+	// This cannot be done in an array.
 	@FXML
 	public Circle circle0;
 	@FXML
@@ -106,8 +104,8 @@ public class GuiController {
 	}
 	
 	/**
-	 * @param root 
 	 * Open the window and set the root (opening screen) as scene.
+	 * @param root
 	 */
 	public void initiateScreen(Parent root) {
 		Scene scene = new Scene(root);
@@ -127,8 +125,8 @@ public class GuiController {
 	}
 	
 	/**
-	 * @param e
 	 * Processed when the start is clicked.
+	 * @param e
 	 */
 	public void loadBoardScreen(MouseEvent e) {
 		boardScreen();
@@ -145,11 +143,11 @@ public class GuiController {
 	}
 	
 	/**
-	 * @param e
 	 * Whenever a circle is clicked this method is called.
 	 * The circleNumberProperty is updated to the according circleNumber.
 	 * This value can be used by listeners. The listeners should check whether the 
 	 * value is equal to -1, if this is the case then the value should be discarded.
+	 * @param e
 	 */
 	public void circleClicked(MouseEvent e) {
 		for(int i = 0; i < board.getCellsArray().length; i++) {
@@ -268,8 +266,8 @@ public class GuiController {
 	}
 	
 	/**
-	 * @param board
 	 * Set the board of the GuiController.
+	 * @param board
 	 */
 	public void setBoard(Board board) {
 		this.board = board;

@@ -10,8 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
 /**
- * @author Borroot
  * This class handles all the logic in the game.
+ * @author Bram Pulles
  */
 public class GameController {
 	

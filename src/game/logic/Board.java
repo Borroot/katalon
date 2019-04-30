@@ -3,18 +3,8 @@ package game.logic;
 import java.util.Arrays;
 
 /**
- * @author Borroot
- * 
- * The layout of the board is as follows: 
- * _______________
- * | 0   1| 5   6|
- * |   2__|__ 7  |
- * | 3 | 4| 8|  9|
- * ------ 20 -----
- * |10 |11|15| 16|
- * |  12--|--17  |
- * |13  14|18  19|
- * ---------------
+ *
+ * @author Bram Pulles
  */
 public class Board {
 	

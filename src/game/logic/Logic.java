@@ -26,14 +26,14 @@ public class Logic {
 	}
 	
 	/**
-	 * @param board
-	 * @return If a board state is game over or not.
-	 * 
 	 * A board state is game over if one of the following three conditions holds:
 	 * 	1. One square is filled by a single Player.
 	 * 	2. The whole board is filled.
 	 * 	3. One Player cannot make a move because it doesn't have stones left.
 	 * 	   Each player has TODO: (amount of stones) stones.
+	 *
+	 * @param board
+	 * @return If a board state is game over or not.
 	 */
 	public static boolean gameIsOver(Board board) {
 		if(oneSquareIsFull(board))
