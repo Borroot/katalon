@@ -252,11 +252,11 @@ public class GuiController {
 		if(e.getSource() instanceof Rectangle){
 			Rectangle rec = (Rectangle)e.getSource();
 			if(rec.getFill() == Color.ORANGE){
-			    chosenSquare.set(Position.CENTER.getCode());
-                setScreen(boardScreen);
+				chosenSquare.set(Position.CENTER.getCode());
+            	setScreen(boardScreen);
 			}
 			else if(rec.getFill() == Color.ORANGERED){
-			    chosenSquare.set(getPosition(rec).getCode());
+				chosenSquare.set(getPosition(rec).getCode());
 				setScreen(boardScreen);
 			}
 		}
