@@ -18,33 +18,60 @@ public class Logic {
 	 * @param nextPos
 	 * @return If a move is valid or not.
 	 */
-	public static boolean validMove(Board board, Player onTurn, int cellNumber, Position nextPos) {
+	public static boolean validMove(Board board, Player onTurn, int cellNumber, int lastCellNumber, Position nextPos) {
 	    if(gameIsOver(board, onTurn))
 	    	return false;
 		if(nextPos == null)
 			return true;
 		
-		//TODO: Finish if a move is valid.
+		return inValidSquare(cellNumber, nextPos) && tookValidPiece(board, onTurn, cellNumber, lastCellNumber, nextPos);
+	}
 
-		// square is according to prevmove
-        if(!isDoubleCell(cellNumber)){
-        	// non-double square
-
+	/**
+	 *
+	 * @param board
+	 * @param onTurn
+	 * @param cellNumber
+	 * @param lastCellNumber
+	 * @param nextPos
+	 * @return If the cell can be occupied by this person.
+	 */
+	private static boolean tookValidPiece(Board board, Player onTurn, int cellNumber, int lastCellNumber, Position nextPos){
+		if(board.getCell(cellNumber).isFree()){
+			return true;
 		}else{
-        	// double square
+			// Check if this square is already yours.
+			if(board.getCell(cellNumber).getOccupy() == onTurn)
+				return false;
 
+			// Check if there is a free cell in the square.
+			Cell[] square = board.getSquare(nextPos);
+			for(Cell cell : square)
+				if(cell.isFree())
+					return false;
+
+			// Check if this cell was occupied with the last move.
+			if(lastCellNumber == cellNumber){
+				// Check if this is the only non-free cell in the square.
+				int count = 0;
+				for(Cell cell : square)
+					if(cell.getOccupy() != onTurn)
+						count++;
+				if(count > 1)
+					return false;
+			}
 		}
-
-        // cell is taken
-		if(!board.getCellsArray()[cellNumber].isFree()){
-		    // the square is full
-
-		}else{
-		    // the square is not full
-
-		}
-
 		return true;
+	}
+
+	private static boolean inValidSquare(int cellNumber, Position nextPos){
+		if(isDoubleCell(cellNumber)){
+			if(nextPos == Position.CENTER)
+				return true;
+			else
+				return nextPos == getDoubleSquare(cellNumber);
+		}
+		return nextPos == getSquare(cellNumber);
 	}
 	
 	/**
@@ -102,6 +129,26 @@ public class Logic {
 	public static boolean isDoubleCell(int cellNumber) {
 		return cellNumber == 4 || cellNumber == 8 || cellNumber == 11 || cellNumber == 15;
 	}
+
+	/**
+	 * This function is only meant to be called for non-double cells.
+	 * @param cellNumber
+	 * @return The square this cell belongs to.
+	 */
+	public static Position getSquare(int cellNumber){
+		assert(!Logic.isDoubleCell(cellNumber));
+
+		if(cellNumber < 4)
+			return Position.TOPLEFT;
+		else if(cellNumber < 10)
+			return Position.TOPRIGHT;
+		else if(cellNumber < 15)
+			return Position.BOTTOMLEFT;
+		else if(cellNumber < 20)
+			return Position.BOTTOMRIGHT;
+		else
+			return Position.CENTER;
+	}
 	
 	/**
 	 * @param cellNumber
@@ -119,6 +166,12 @@ public class Logic {
         }
 	}
 
+	/**
+	 *
+	 * @param cellNumber
+	 * @param square
+	 * @return The position of the cellNumber relative to the square given.
+	 */
 	public static Position getPos(int cellNumber, Position square){
         if(square == Position.CENTER){
             switch (cellNumber) {
@@ -126,6 +179,7 @@ public class Logic {
 				case 8: return Position.TOPRIGHT;
 				case 11: return Position.BOTTOMLEFT;
 				case 15: return Position.BOTTOMRIGHT;
+				case 20: return Position.CENTER;
 			}
 		}else{
             int mod = cellNumber % 5;

@@ -19,6 +19,10 @@ public class Board {
 			cells[i] = new Cell(i);
 		}
 	}
+
+	public Cell getCell(int cellNumber){
+		return cells[cellNumber];
+	}
 	
 	public Cell getCell(Position squarePos, Position circlePos) {
 		Cell[] square = getSquare(squarePos);

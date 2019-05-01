@@ -154,7 +154,7 @@ public class GuiController {
 	 */
 	public void circleClicked(MouseEvent e) {
 		for(int i = 0; i < board.getCellsArray().length; i++) {
-			if(e.getSource() == board.getCellsArray()[i].getCircle()) {
+			if(e.getSource() == board.getCell(i).getCircle()) {
 				circleNumber.set(i);
 			}
 		}
@@ -265,7 +265,7 @@ public class GuiController {
 		initializeCirclesArray();
 		
 		for(int i = 0; i < this.board.getCellsArray().length; i++) {
-			board.getCellsArray()[i].setCircle(circles[i]);
+			board.getCell(i).setCircle(circles[i]);
 		}
 	}
 	

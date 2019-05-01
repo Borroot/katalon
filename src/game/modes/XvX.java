@@ -12,6 +12,7 @@ public abstract class XvX {
 	protected Board board;
 	private Player onTurn = Player.RED;
 
+	protected int lastCellNumber = -1;
 	protected Position nextPos = null;
 
 	public XvX() {
@@ -35,11 +36,12 @@ public abstract class XvX {
 	 */
 	protected void move(int cellNumber) {
 
+		System.out.println(nextPos);
 		if (nextPos == null && Logic.isDoubleCell(cellNumber)){
 			firstMoveIsDouble(cellNumber);
 			occupy(cellNumber);
 			changeTurn();
-		}else if (Logic.validMove(board, onTurn, cellNumber, nextPos)) {
+		}else if (Logic.validMove(board, onTurn, cellNumber, lastCellNumber, nextPos)) {
 			nextPos = Logic.getPos(cellNumber, nextPos);
 			occupy(cellNumber);
             changeTurn();
@@ -58,6 +60,7 @@ public abstract class XvX {
 	}
 
 	private void occupy(int cellNumber){
-		board.getCellsArray()[cellNumber].setOccupy(onTurn);
+		board.getCell(cellNumber).setOccupy(onTurn);
+		lastCellNumber = cellNumber;
 	}
 }
