@@ -34,8 +34,6 @@ public abstract class XvX {
 	 * @param cellNumber
 	 */
 	protected void move(int cellNumber) {
-
-		System.out.println(nextPos);
 		if (nextPos == null && Logic.isDoubleCell(cellNumber)){
 			nextPos = firstMoveIsDouble(cellNumber);
 			occupy(cellNumber);
