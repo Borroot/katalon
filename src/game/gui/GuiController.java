@@ -185,6 +185,9 @@ public class GuiController {
         	circle.getStyleClass().clear();
         	circle.getStyleClass().add("circle");
 		}
+
+        chooseSquareScreen.getStyleClass().clear();
+        chooseSquareScreen.getStyleClass().add("rectangle");
 	}
 	
 	/**
