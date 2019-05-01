@@ -27,7 +27,7 @@ public class GuiController {
 	private Circle circles[] = new Circle[21];
 	
 	private IntegerProperty circleNumber = new SimpleIntegerProperty(-1);
-	private IntegerProperty squareNumber = new SimpleIntegerProperty(-1);
+	private IntegerProperty chosenSquare = new SimpleIntegerProperty(-1);
 	
 	private Rectangle doubleSmallRectangle;
 	private Rectangle bigRectangle;
@@ -165,18 +165,18 @@ public class GuiController {
 	 * Load the screen where a square can be chosen.
 	 * The ones which you can choose from are in another colour.
 	 */
-	public void chooseSquareScreen(Position[] pos) {
+	public void chooseSquareScreen(Position pos) {
 		titleScreen.setVisible(false);
 		boardScreen.setVisible(false);
 		chooseSquareScreen.setVisible(true);
 		
-		centerSquare.setFill(Color.ORANGE); // pos[1] is always the centre square
+		centerSquare.setFill(Color.ORANGE);
 		
-		bigRectangle = getRectangle(pos[0]);
+		bigRectangle = getRectangle(pos);
 		bigRectangle.setFill(Color.ORANGERED);
 		
 		Rectangle[] smallRectangles = smallRectangleArray();
-		doubleSmallRectangle = getSmallRectangle(pos[0]);
+		doubleSmallRectangle = getSmallRectangle(pos);
 		
 		for(int i = 0; i < smallRectangles.length; i++) {
 			if(smallRectangles[i] != doubleSmallRectangle) {
@@ -193,12 +193,12 @@ public class GuiController {
 		if(e.getSource() instanceof Rectangle){
 			Rectangle rec = (Rectangle)e.getSource();
 			if(rec.getFill() == Color.ORANGE){
-				squareNumber.set(20);
+			    chosenSquare.set(Position.CENTER.getCode());
 				chooseSquareScreen.setVisible(false);
 				boardScreen.setVisible(true);
 			}
 			else if(rec.getFill() == Color.ORANGERED){
-				squareNumber.set(Logic.getCenter(getPosition(rec)));
+			    chosenSquare.set(getPosition(rec).getCode());
 				chooseSquareScreen.setVisible(false);
 				boardScreen.setVisible(true);
 			}
@@ -312,12 +312,8 @@ public class GuiController {
 		return circleNumber;
 	}
 
-	public IntegerProperty getSquareNumberProperty() {
-		return squareNumber;
-	}
-	
-	public int getCircleNumber() {
-		return circleNumber.get();
+	public IntegerProperty getChosenSquareProperty() {
+		return chosenSquare;
 	}
 	
 }

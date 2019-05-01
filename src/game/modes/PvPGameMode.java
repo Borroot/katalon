@@ -1,6 +1,7 @@
 package game.modes;
 
 import game.gui.GuiController;
+import game.logic.Cell;
 import game.logic.Logic;
 import game.logic.Position;
 import javafx.beans.value.ChangeListener;
@@ -21,29 +22,35 @@ public class PvPGameMode extends XvX{
 	private void setListenerCircleClicked() {
 		gui.getCircleNumberProperty().addListener(new ChangeListener<Object>(){
 			@Override
-			public void changed(ObservableValue<?> o, Object oldVal, Object newVal) {
-		        if((int)newVal == -1)
+			public void changed(ObservableValue<?> o, Object oldVal, Object cellNumber) {
+		        if((int)cellNumber == -1)
 		        	return; 
 		        else
-		        	move((int)newVal);
+		        	move((int)cellNumber);
 			}
 		});
 	}
 
 	/**
-	 * The squareNumber property from the GuiController is connected to this listener.
-	 * Whenever a square is chosen the method to set the prevMove is called with the right value.
+	 * The chosenSquare property from the GuiController is connected to this listener.
 	 */
 	private void setListenerChooseSquare(){
-		gui.getSquareNumberProperty().addListener(new ChangeListener<Object>() {
+		gui.getChosenSquareProperty().addListener(new ChangeListener<Object>() {
 			@Override
-			public void changed(ObservableValue<?> o, Object oldVal, Object newVal) {
-				if((int)newVal == -1)
+			public void changed(ObservableValue<?> o, Object oldVal, Object chosenSquare) {
+				if((int)chosenSquare == -1)
 					return;
-				else{ // NOTE: The newVal in this function is always the centre circle!
-				    Position prevMoveSquare = Logic.getSquares((int)newVal)[0];
-					Position prevMoveCircle = Logic.getCircleCurrent(PvPGameMode.super.tempCellNumber, prevMoveSquare);
-					setPrevMove(prevMoveCircle, prevMoveSquare);
+				else{
+					// Check which cellNumber is colored.
+					int cellNumber = -1;
+
+				    Cell[] cells = PvPGameMode.super.board.getCellsArray();
+				    for(Cell cell : cells)
+				    	if(!cell.isFree())
+				    		cellNumber = cell.getId();
+
+				    // The next position is calculated with the chosen square and the chosen cellNumber.
+				   	setNextPos(Logic.getPos(cellNumber, Position.getPos((int)chosenSquare)));
 				}
 			}
 		});
@@ -57,14 +64,14 @@ public class PvPGameMode extends XvX{
 	 */
 	@Override
 	protected Position firstMoveIsDouble(int cellNumber) {
-	    gui.chooseSquareScreen(Logic.getSquares(cellNumber));
+	    gui.chooseSquareScreen(Logic.getDoubleSquare(cellNumber));
 		return null;
 	}
 
-	private void setPrevMove(Position prevMoveCircle, Position prevMoveSquare){
-		super.prevMoveCircle = prevMoveCircle;
-		super.prevMoveSquare = prevMoveSquare;
+	private void setNextPos(Position nextPos){
+		super.nextPos = nextPos;
 	}
+
 }
 
 

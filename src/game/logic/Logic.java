@@ -15,21 +15,19 @@ public class Logic {
 	/**
 	 * @param board
 	 * @param cellNumber
-	 * @param prevMoveCircle
-	 * @param prevMoveSquare
+	 * @param nextPos
 	 * @return If a move is valid or not.
 	 */
-	public static boolean validMove(Board board, Player onTurn, int cellNumber, Position prevMoveCircle, Position prevMoveSquare) {
+	public static boolean validMove(Board board, Player onTurn, int cellNumber, Position nextPos) {
 	    if(gameIsOver(board, onTurn))
 	    	return false;
-		if(prevMoveCircle == null || prevMoveSquare == null)
+		if(nextPos == null)
 			return true;
 		
 		//TODO: Finish if a move is valid.
 
 		// square is according to prevmove
-        Position[] pos = getSquares(cellNumber);
-        if(pos.length == 1){
+        if(!isDoubleCell(cellNumber)){
         	// non-double square
 
 		}else{
@@ -107,114 +105,39 @@ public class Logic {
 	
 	/**
 	 * @param cellNumber
-	 * @return 	Return an Position-array with as elements the squares a given cellNumber is in.
-	 * 			If the cellNumber is in two squares the last element is always the centre square.
+	 * @return The square the double cell belongs to apart from the centre square.
 	 */
-	public static Position[] getSquares(int cellNumber) {
-		assert(cellNumber >= 0 && cellNumber < 21);
+	public static Position getDoubleSquare(int cellNumber) {
+		assert(cellNumber >= 0 && cellNumber < 21 && Logic.isDoubleCell(cellNumber));
 		
-		Position[] pos;
-		
-		if(Logic.isDoubleCell(cellNumber)) {
-			pos = new Position[2];
-			switch(cellNumber) {
-				case 4: pos[0] = Position.TOPLEFT; pos[1] = Position.CENTER; break;
-				case 8: pos[0] = Position.TOPRIGHT; pos[1] = Position.CENTER; break;
-				case 11: pos[0] = Position.BOTTOMLEFT; pos[1] = Position.CENTER; break;
-				case 15: pos[0] = Position.BOTTOMRIGHT; pos[1] = Position.CENTER; break;
-			}
-		}else{
-			pos = new Position[1];
-			if(cellNumber < 5)
-				pos[0] = Position.TOPLEFT;
-			else if(cellNumber < 10)
-				pos[0] = Position.TOPRIGHT;
-			else if(cellNumber < 15)
-				pos[0] = Position.BOTTOMLEFT;
-			else if(cellNumber < 20)
-				pos[0] = Position.BOTTOMRIGHT;
-			else
-				pos[0] = Position.CENTER;
-		}
-		
-		return pos;
+		switch(cellNumber) {
+            case 4: return Position.TOPLEFT;
+            case 8: return Position.TOPRIGHT;
+            case 11: return Position.BOTTOMLEFT;
+            case 15: return Position.BOTTOMRIGHT;
+			default: return null;
+        }
 	}
 
-	/**
-	 * @param cellNumber
-	 * @param prevMoveSquare
-	 * @return The square the current cellnumber belongs to.
-	 */
-	public static Position getSquare(int cellNumber, Position prevMoveSquare){
-		if(isDoubleCell(cellNumber)){
-			if(prevMoveSquare == Position.CENTER)
-				return getSquares(cellNumber)[0];
-			else
-				return getSquares(cellNumber)[1];
-		}else{
-			return getSquares(cellNumber)[0];
-		}
-	}
-
-	/**
-	 * @param cellNumber
-	 * @param prevMoveSquare
-	 * @return The position the current cellnumber corresponds to.
-	 */
-	public static Position getCircle(int cellNumber, Position prevMoveSquare){
-		if(isDoubleCell(cellNumber)){
-			Position pos = getSquare(cellNumber, prevMoveSquare);
-			if(pos == Position.CENTER){
-				switch (cellNumber){
-					case 4:	return Position.TOPLEFT;
-					case 8: return Position.TOPRIGHT;
-					case 11: return Position.BOTTOMLEFT;
-					case 15: return Position.BOTTOMRIGHT;
-				}
-			}else{
-				switch(cellNumber){
-					case 4: return Position.BOTTOMRIGHT;
-					case 8: return Position.BOTTOMLEFT;
-					case 11: return Position.TOPRIGHT;
-					case 15: return Position.TOPLEFT;
-				}
-			}
-		}
-		return null;
-	}
-
-	public static Position getCircleCurrent(int cellNumber, Position currentMoveSquare){
-		if(currentMoveSquare == Position.CENTER){
-			switch (cellNumber){
-				case 4:	return Position.TOPLEFT;
+	public static Position getPos(int cellNumber, Position square){
+        if(square == Position.CENTER){
+            switch (cellNumber) {
+				case 4: return Position.TOPLEFT;
 				case 8: return Position.TOPRIGHT;
 				case 11: return Position.BOTTOMLEFT;
 				case 15: return Position.BOTTOMRIGHT;
 			}
 		}else{
-			switch(cellNumber){
+            int mod = cellNumber % 5;
+            switch (mod){
+				case 2: return Position.CENTER;
+				case 0: return Position.TOPLEFT;
+				case 1: return Position.TOPRIGHT;
+				case 3: return Position.BOTTOMLEFT;
 				case 4: return Position.BOTTOMRIGHT;
-				case 8: return Position.BOTTOMLEFT;
-				case 11: return Position.TOPRIGHT;
-				case 15: return Position.TOPLEFT;
 			}
-		}
-		return null;
+        }
+        return null;
 	}
 
-	/**
-	 * @param pos
-	 * @return Return the centre circle of a given square.
-	 */
-	public static int getCenter(Position pos){
-		switch (pos){
-			case TOPLEFT:		return 2;
-			case TOPRIGHT:		return 7;
-			case BOTTOMLEFT:	return 12;
-			case BOTTOMRIGHT:	return 17;
-			case CENTER:		return 20;
-			default: return -1;
-		}
-	}
-	
 }

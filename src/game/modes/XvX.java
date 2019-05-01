@@ -9,12 +9,10 @@ import game.logic.Position;
 public abstract class XvX {
 
 	protected GuiController gui;
-	private Board board;
+	protected Board board;
 	private Player onTurn = Player.RED;
 
-	protected int tempCellNumber;
-	protected Position prevMoveCircle = null;
-	protected Position prevMoveSquare = null;
+	protected Position nextPos = null;
 
 	public XvX() {
 	}
@@ -36,17 +34,14 @@ public abstract class XvX {
 	 * @param cellNumber
 	 */
 	protected void move(int cellNumber) {
-		System.out.println(prevMoveSquare + " " + prevMoveCircle);
 
-		if (prevMoveSquare == null && Logic.isDoubleCell(cellNumber)){
-			tempCellNumber = cellNumber;
-			prevMoveSquare = firstMoveIsDouble(cellNumber);
-			board.getCellsArray()[cellNumber].setOccupy(onTurn);
+		if (nextPos == null && Logic.isDoubleCell(cellNumber)){
+			firstMoveIsDouble(cellNumber);
+			occupy(cellNumber);
 			changeTurn();
-		}else if (Logic.validMove(board, onTurn, cellNumber, prevMoveCircle, prevMoveSquare)) {
-			prevMoveCircle = Logic.getCircle(cellNumber, prevMoveSquare);
-			prevMoveSquare = Logic.getSquare(cellNumber, prevMoveSquare);
-            board.getCellsArray()[cellNumber].setOccupy(onTurn);
+		}else if (Logic.validMove(board, onTurn, cellNumber, nextPos)) {
+			nextPos = Logic.getPos(cellNumber, nextPos);
+			occupy(cellNumber);
             changeTurn();
 		}
 
@@ -60,5 +55,9 @@ public abstract class XvX {
 			onTurn = Player.YELLOW;
 		else
 			onTurn = Player.RED;
+	}
+
+	private void occupy(int cellNumber){
+		board.getCellsArray()[cellNumber].setOccupy(onTurn);
 	}
 }
