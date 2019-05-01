@@ -48,10 +48,14 @@ public abstract class XvX {
 		}
 
 		if (Logic.gameIsOver(board, onTurn)) {
+		    //TODO: Show the winner.
 			System.out.println("Game Over!");
 		}
 	}
 
+	/**
+	 * Change the onTurn to the next player.
+	 */
 	private void changeTurn(){
 		if(onTurn == Player.RED)
 			onTurn = Player.YELLOW;
@@ -59,6 +63,10 @@ public abstract class XvX {
 			onTurn = Player.RED;
 	}
 
+	/**
+	 * Occupy the given cell by the onTurn player.
+	 * @param cellNumber
+	 */
 	private void occupy(int cellNumber){
 		board.getCell(cellNumber).setOccupy(onTurn);
 		lastCellNumber = cellNumber;

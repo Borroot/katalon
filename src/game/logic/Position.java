@@ -9,10 +9,17 @@ public enum Position {
 		this.code = code;
 	}
 
+	/**
+	 * @return The code of this position.
+	 */
 	public int getCode(){
 		return code;
 	}
 
+	/**
+	 * @param code
+	 * @return The position using the code.
+	 */
 	public static Position getPos(int code){
 		for(Position pos : Position.values())
 			if(pos.getCode() == code)

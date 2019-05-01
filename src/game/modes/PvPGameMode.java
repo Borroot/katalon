@@ -33,6 +33,7 @@ public class PvPGameMode extends XvX{
 
 	/**
 	 * The chosenSquare property from the GuiController is connected to this listener.
+	 * The nextPos is set whenever the player choose a square.
 	 */
 	private void setListenerChooseSquare(){
 		gui.getChosenSquareProperty().addListener(new ChangeListener<Object>() {
@@ -68,6 +69,9 @@ public class PvPGameMode extends XvX{
 		return null;
 	}
 
+	/**
+	 * @param nextPos
+	 */
 	private void setNextPos(Position nextPos){
 		super.nextPos = nextPos;
 	}

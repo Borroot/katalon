@@ -1,7 +1,5 @@
 package game.logic;
 
-import javafx.geometry.Pos;
-
 public class Logic {
 
     private static final int AMOUNT_OF_STONES = 12;
@@ -64,6 +62,11 @@ public class Logic {
 		return true;
 	}
 
+	/**
+	 * @param cellNumber
+	 * @param nextPos
+	 * @return If the move is made in a valid square.
+	 */
 	private static boolean inValidSquare(int cellNumber, Position nextPos){
 		if(isDoubleCell(cellNumber)){
 			if(nextPos == Position.CENTER)
@@ -86,7 +89,12 @@ public class Logic {
 	public static boolean gameIsOver(Board board, Player onTurn) {
 		return oneSquareIsFull(board) || stonesEmpty(board, onTurn) || board.isFull();
 	}
-	
+
+	/**
+	 * @param board
+	 * @param onTurn
+	 * @return If someone has run out of stones.
+	 */
 	private static boolean stonesEmpty(Board board, Player onTurn) {
 	    Cell[] cells = board.getCellsArray();
 	    int count = 0;

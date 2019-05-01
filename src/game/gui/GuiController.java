@@ -186,7 +186,7 @@ public class GuiController {
 	}
 
 	/**
-	 * Set the squareNumber property to the correct center circle of the right square.
+	 * Set the chosenSquare property to the correct position code.
 	 * @param e
 	 */
 	public void rectangleClicked(MouseEvent e) {

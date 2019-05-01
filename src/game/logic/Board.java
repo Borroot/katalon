@@ -13,17 +13,29 @@ public class Board {
 	public Board() {
 		initializeCells();
 	}
-	
+
+	/**
+	 * Give the board cells.
+	 */
 	private void initializeCells() {
 		for(int i = 0; i < cells.length; i++) {
 			cells[i] = new Cell(i);
 		}
 	}
 
+	/**
+	 * @param cellNumber
+	 * @return The corresponding cell.
+	 */
 	public Cell getCell(int cellNumber){
 		return cells[cellNumber];
 	}
-	
+
+	/**
+	 * @param squarePos
+	 * @param circlePos
+	 * @return The cell which corresponds to the relative positions given.
+	 */
 	public Cell getCell(Position squarePos, Position circlePos) {
 		Cell[] square = getSquare(squarePos);
 		
@@ -36,7 +48,11 @@ public class Board {
 			default: return null;
 		}
 	}
-	
+
+	/**
+	 * @param pos
+	 * @return The square (an array of cells) which corresponds to the relative position given.
+	 */
 	public Cell[] getSquare(Position pos) {
 		Cell[] square = new Cell[5]; 
 		
@@ -54,7 +70,10 @@ public class Board {
 		
 		return square; 
 	}
-	
+
+	/**
+	 * @return If the board is full.
+	 */
 	public boolean isFull() {
 		for(int i = 0; i < cells.length; i++) {
 			if(cells[i].isFree())
