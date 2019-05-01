@@ -76,7 +76,38 @@ public class Logic {
 		}
 		return nextPos == getSquare(cellNumber);
 	}
-	
+
+	public static Player otherPlayer(Player player){
+	    return (player == Player.RED)? Player.YELLOW : Player.RED;
+	}
+	/**
+	 * @param board
+	 * @param onTurn This is the person who did NOT make the last move.
+	 * @return The winner of the current game.
+	 */
+	public static Player winner(Board board, Player onTurn){
+	    if(!board.isFull()){
+	    	if(oneSquareIsFull(board))
+	    		return otherPlayer(onTurn);
+	    	else
+	    		return onTurn;
+		}else{
+	    	int squareCount = 0;
+	    	for(Position pos : Position.values()){
+	    		int cellCount = 0;
+	    		Cell[] cells = board.getSquare(pos);
+
+	    		for(Cell cell : cells)
+	    			if(cell.getOccupy() == onTurn)
+	    				cellCount++;
+
+	    		if(cellCount > 2)
+	    			squareCount++;
+			}
+	    	return (squareCount > 2)? onTurn : otherPlayer(onTurn);
+		}
+	}
+
 	/**
 	 * A board state is game over if one of the following three conditions holds:
 	 * 	1. One square is filled by a single Player.
@@ -95,7 +126,7 @@ public class Logic {
 	 * @param onTurn
 	 * @return If someone has run out of stones.
 	 */
-	private static boolean stonesEmpty(Board board, Player onTurn) {
+	public static boolean stonesEmpty(Board board, Player onTurn) {
 	    Cell[] cells = board.getCellsArray();
 	    int count = 0;
 	    for(Cell cell : cells){

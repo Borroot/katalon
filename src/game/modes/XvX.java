@@ -38,7 +38,7 @@ public abstract class XvX {
 
 		System.out.println(nextPos);
 		if (nextPos == null && Logic.isDoubleCell(cellNumber)){
-			firstMoveIsDouble(cellNumber);
+			nextPos = firstMoveIsDouble(cellNumber);
 			occupy(cellNumber);
 			changeTurn();
 		}else if (Logic.validMove(board, onTurn, cellNumber, lastCellNumber, nextPos)) {
@@ -48,8 +48,7 @@ public abstract class XvX {
 		}
 
 		if (Logic.gameIsOver(board, onTurn)) {
-		    //TODO: Show the winner.
-			System.out.println("Game Over!");
+			System.out.println("Game Over! The winner is: " + Logic.winner(board, onTurn));
 		}
 	}
 
@@ -57,10 +56,7 @@ public abstract class XvX {
 	 * Change the onTurn to the next player.
 	 */
 	private void changeTurn(){
-		if(onTurn == Player.RED)
-			onTurn = Player.YELLOW;
-		else
-			onTurn = Player.RED;
+	    onTurn = Logic.otherPlayer(onTurn);
 	}
 
 	/**
