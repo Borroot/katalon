@@ -2,16 +2,22 @@ package game.gui;
 
 import game.Main;
 import game.logic.Board;
-import game.logic.Logic;
+import game.logic.Cell;
+import game.logic.Player;
 import game.logic.Position;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -25,17 +31,26 @@ public class GuiController {
 	private Board board;
 	
 	private Circle circles[] = new Circle[21];
+
+	private BooleanProperty reset = new SimpleBooleanProperty(false);
 	
 	private IntegerProperty circleNumber = new SimpleIntegerProperty(-1);
 	private IntegerProperty chosenSquare = new SimpleIntegerProperty(-1);
 	
 	private Rectangle doubleSmallRectangle;
 	private Rectangle bigRectangle;
-	
+
+	@FXML
+	public Label winnerLabel;
+
+	@FXML
+	public AnchorPane root;
 	@FXML
 	public BorderPane titleScreen;
 	@FXML
 	public StackPane boardScreen;
+	@FXML
+	public BorderPane winScreen;
 	@FXML
 	public StackPane chooseSquareScreen;
 	
@@ -112,19 +127,64 @@ public class GuiController {
 	 */
 	public void initiateScreen(Parent root) {
 		Scene scene = new Scene(root);
-		
+		scene.getStylesheets().add("/BoardScreen.css");
+
 		window.setScene(scene);
 		window.setTitle("Katalon");
 		window.show();
+
+		titleScreen();
 	}
-	
+
+	public void setScreen(Node node){
+		for(Node child : root.getChildren()){
+			if(child.equals(node))
+				child.setVisible(true);
+			else
+				child.setVisible(false);
+		}
+	}
 	/**
 	 * Set the window to the title screen.
 	 */
 	public void titleScreen() {
-		boardScreen.setVisible(false);
-		titleScreen.setVisible(true);
-		chooseSquareScreen.setVisible(false);
+		setScreen(titleScreen);
+	}
+
+	/**
+	 * Set the window to the win screen.
+	 * @param winner
+	 */
+	public void winScreen(Player winner){
+	    if(winner == Player.RED)
+	    	winnerLabel.setText("The Winner is: RED");
+	    else
+	    	winnerLabel.setText("The Winner is: YELLOW");
+
+		boardScreen.setOpacity(0.3);
+		winScreen.setVisible(true);
+	}
+
+	/**
+	 * Set the reset property to true.
+	 */
+	public void resetGame(){
+		reset.set(true);
+	}
+
+	/**
+	 * Reset the game variables so a new game can be started in the same gui controller.
+	 */
+	public void resetGameVariables(){
+		boardScreen.setOpacity(1);
+		reset.set(false);
+		circleNumber.set(-1);
+		chosenSquare.set(-1);
+
+        for(Circle circle : circles) {
+        	circle.getStyleClass().clear();
+        	circle.getStyleClass().add("circle");
+		}
 	}
 	
 	/**
@@ -140,9 +200,7 @@ public class GuiController {
 	 * Set the window to the board scene.
 	 */
 	private void boardScreen() {
-		titleScreen.setVisible(false);
-		boardScreen.setVisible(true);
-		chooseSquareScreen.setVisible(false);
+	    setScreen(boardScreen);
 	}
 	
 	/**
@@ -166,10 +224,8 @@ public class GuiController {
 	 * The ones which you can choose from are in another colour.
 	 */
 	public void chooseSquareScreen(Position pos) {
-		titleScreen.setVisible(false);
-		boardScreen.setVisible(false);
-		chooseSquareScreen.setVisible(true);
-		
+        setScreen(chooseSquareScreen);
+
 		centerSquare.setFill(Color.ORANGE);
 		
 		bigRectangle = getRectangle(pos);
@@ -194,13 +250,11 @@ public class GuiController {
 			Rectangle rec = (Rectangle)e.getSource();
 			if(rec.getFill() == Color.ORANGE){
 			    chosenSquare.set(Position.CENTER.getCode());
-				chooseSquareScreen.setVisible(false);
-				boardScreen.setVisible(true);
+                setScreen(boardScreen);
 			}
 			else if(rec.getFill() == Color.ORANGERED){
 			    chosenSquare.set(getPosition(rec).getCode());
-				chooseSquareScreen.setVisible(false);
-				boardScreen.setVisible(true);
+				setScreen(boardScreen);
 			}
 		}
 	}
@@ -307,7 +361,11 @@ public class GuiController {
 	public Board getBoard() {
 		return board;
 	}
-	
+
+	public BooleanProperty getResetProperty(){
+		return reset;
+	}
+
 	public IntegerProperty getCircleNumberProperty() {
 		return circleNumber;
 	}

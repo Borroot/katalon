@@ -221,11 +221,15 @@ public class Logic {
 				case 20: return Position.CENTER;
 			}
 		}else{
+        	// This is a really nasty corner case.
+            if(square == null && cellNumber == 20)
+            	return Position.CENTER;
+
             int mod = cellNumber % 5;
             switch (mod){
-				case 2: return Position.CENTER;
 				case 0: return Position.TOPLEFT;
 				case 1: return Position.TOPRIGHT;
+				case 2: return Position.CENTER;
 				case 3: return Position.BOTTOMLEFT;
 				case 4: return Position.BOTTOMRIGHT;
 			}

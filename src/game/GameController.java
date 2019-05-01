@@ -15,7 +15,6 @@ import javafx.scene.Parent;
  */
 public class GameController {
 	
-	private Board board = new Board();
 	private GuiController gui;
 	
 	public GameController() {
@@ -46,6 +45,5 @@ public class GameController {
 		gui = fxmlLoader.getController();
 		
 		gui.initiateScreen(root);
-		gui.setBoard(board);
 	}
 }

@@ -8,9 +8,8 @@ import game.logic.Position;
 
 public abstract class XvX {
 
-	protected GuiController gui;
-	protected Board board;
-	private Player onTurn = Player.RED;
+	protected Board board = new Board();
+	protected Player onTurn = Player.RED;
 
 	protected int lastCellNumber = -1;
 	protected Position nextPos = null;
@@ -18,17 +17,17 @@ public abstract class XvX {
 	public XvX() {
 	}
 
-	public XvX(GuiController gui) {
-		this.gui = gui;
-		this.board = gui.getBoard();
-	}
-
 	/**
 	 * Ask the Player which square the first move belongs to.
-	 * This will be different for Humans then for Computers.
-	 * @return Square number.
+	 * This will be different for Humans and Computers.
+	 * @return The chosen square number position.
 	 */
 	protected abstract Position firstMoveIsDouble(int cellNumber);
+
+	/**
+	 * Show either a gui in a player vs player game or do some computations for analysis.
+	 */
+	protected abstract void gameOver();
 
 	/**
 	 * Make the move if the move is valid and check if it's game over.
@@ -48,7 +47,7 @@ public abstract class XvX {
 		}
 
 		if (Logic.gameIsOver(board, onTurn)) {
-			System.out.println("Game Over! The winner is: " + Logic.winner(board, onTurn));
+			gameOver();
 		}
 	}
 

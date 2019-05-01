@@ -1,6 +1,7 @@
 package game.modes;
 
 import game.gui.GuiController;
+import game.logic.Board;
 import game.logic.Cell;
 import game.logic.Logic;
 import game.logic.Position;
@@ -9,10 +10,15 @@ import javafx.beans.value.ObservableValue;
 
 public class PvPGameMode extends XvX{
 
+	protected GuiController gui;
+
 	public PvPGameMode(GuiController gui) {
-		super(gui);
+	    this.gui = gui;
+	    gui.setBoard(board);
+
 		setListenerCircleClicked();
 		setListenerChooseSquare();
+		setListenerReset();
 	}
 	
 	/**
@@ -57,6 +63,17 @@ public class PvPGameMode extends XvX{
 		});
 	}
 
+	private void setListenerReset(){
+		gui.getResetProperty().addListener(new ChangeListener<Object>() {
+			@Override
+			public void changed(ObservableValue<?> o, Object oldVal, Object newVal) {
+				if((Boolean)newVal){
+				    resetGame();
+				}
+			}
+		});
+	}
+
 	/**
 	 * This function loads the calls the function in the gui so the player can choose to which square
 	 * the first move belongs.
@@ -67,6 +84,21 @@ public class PvPGameMode extends XvX{
 	protected Position firstMoveIsDouble(int cellNumber) {
 	    gui.chooseSquareScreen(Logic.getDoubleSquare(cellNumber));
 		return null;
+	}
+
+	@Override
+	protected void gameOver(){
+		gui.winScreen(Logic.winner(board, onTurn));
+	}
+
+	private void resetGame(){
+		setNextPos(null);
+		onTurn = Logic.otherPlayer(Logic.winner(board, onTurn));
+		lastCellNumber = -1;
+		board = new Board();
+		gui.setBoard(board);
+		gui.resetGameVariables();
+		gui.loadBoardScreen(null);
 	}
 
 	/**

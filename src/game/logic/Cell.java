@@ -27,7 +27,7 @@ public class Cell {
 	/**
 	 * When the Cell gets occupied the color is automatically changed.
 	 */
-	private void setColor() {
+	public void setColor() {
 		if(occupies == Player.YELLOW)
 			this.getCircle().setFill(Color.rgb(252, 255, 76));
 		else if(occupies == Player.RED)
