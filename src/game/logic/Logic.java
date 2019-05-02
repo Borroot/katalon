@@ -9,7 +9,7 @@ package game.logic;
  */
 public class Logic {
 
-    private static final int AMOUNT_OF_STONES = 1;
+    private static final int AMOUNT_OF_STONES = 12;
 
 	/**
 	 * This class should not be instantiated.

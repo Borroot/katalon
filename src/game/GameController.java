@@ -10,7 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
 /**
- * This class starts the right gamemode.
+ * This class starts the right gamemode
  * @author Bram Pulles
  */
 public class GameController {
