@@ -3,6 +3,10 @@ package game;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+/**
+ * This class only starts a new game controller.
+ * @author Bram Pulles
+ */
 public class Main extends Application {
 	
 	private static Stage window;

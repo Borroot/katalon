@@ -1,5 +1,10 @@
 package game.logic;
 
+/**
+ * This class represents a relative position on the playing board.
+ * The positions can be used for the Cells and for the Squares.
+ * @author Bram Pulles
+ */
 public enum Position {
 	TOPLEFT(0), TOPRIGHT(1), BOTTOMLEFT(2), BOTTOMRIGHT(3), CENTER(4);
 

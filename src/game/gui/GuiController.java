@@ -24,7 +24,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-
+/**
+ * This class handles everything regarding the GUI.
+ * @author Bram Pulles
+ */
 public class GuiController {
 
 	private Stage window = Main.getWindow();

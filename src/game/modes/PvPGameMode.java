@@ -8,6 +8,10 @@ import game.logic.Position;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
+/**
+ * Player vs Player gamemode with a GUI.
+ * @author Bram Pulles
+ */
 public class PvPGameMode extends XvX{
 
 	protected GuiController gui;
@@ -63,6 +67,10 @@ public class PvPGameMode extends XvX{
 		});
 	}
 
+	/**
+	 * The reset property from the GuiController is connected to this listener.
+	 * Whenever the player clicks on the winscreen this function calls the resetGame function.
+	 */
 	private void setListenerReset(){
 		gui.getResetProperty().addListener(new ChangeListener<Object>() {
 			@Override
@@ -86,11 +94,17 @@ public class PvPGameMode extends XvX{
 		return null;
 	}
 
+	/**
+	 * This function show the winscreen with the appropriate text.
+	 */
 	@Override
 	protected void gameOver(){
 		gui.winScreen(Logic.winner(board, onTurn));
 	}
 
+	/**
+	 * This function starts a new game.
+	 */
 	private void resetGame(){
 		setNextPos(null);
 		onTurn = Logic.otherPlayer(Logic.winner(board, onTurn));

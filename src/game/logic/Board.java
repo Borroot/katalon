@@ -3,7 +3,7 @@ package game.logic;
 import java.util.Arrays;
 
 /**
- *
+ * This class represents a playing board for Katalon.
  * @author Bram Pulles
  */
 public class Board {
@@ -81,7 +81,10 @@ public class Board {
 		}
 		return true;
 	}
-	
+
+	/**
+	 * @return An array with all the Cells on the board.
+	 */
 	public Cell[] getCellsArray() {
 		return cells;
 	}

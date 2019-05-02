@@ -1,5 +1,12 @@
 package game.logic;
 
+/**
+ * This class takes care of all the logic regarding the game.
+ * So all the game rules are implemented in this class.
+ * This class should not be instantiated but only be used to check if the game rules apply.
+ * This class can also be used to do some basic computations regarding the cells and squares.
+ * @author Bram Pulles
+ */
 public class Logic {
 
     private static final int AMOUNT_OF_STONES = 1;
@@ -212,19 +219,18 @@ public class Logic {
 	 * @return The position of the cellNumber relative to the square given.
 	 */
 	public static Position getPos(int cellNumber, Position square){
+		// This is a really nasty corner case.
+		if(cellNumber == 20)
+			return Position.CENTER;
+
         if(square == Position.CENTER){
             switch (cellNumber) {
 				case 4: return Position.TOPLEFT;
 				case 8: return Position.TOPRIGHT;
 				case 11: return Position.BOTTOMLEFT;
 				case 15: return Position.BOTTOMRIGHT;
-				case 20: return Position.CENTER;
 			}
 		}else{
-        	// This is a really nasty corner case.
-            if(square == null && cellNumber == 20)
-            	return Position.CENTER;
-
             int mod = cellNumber % 5;
             switch (mod){
 				case 0: return Position.TOPLEFT;

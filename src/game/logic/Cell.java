@@ -3,6 +3,10 @@ package game.logic;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+/**
+ * This class represents a single cell/circle on the playing board.
+ * @author Bram Pulles
+ */
 public class Cell {
 	
 	private final int id;
@@ -49,11 +53,18 @@ public class Cell {
 	public boolean isFree() {
 		return occupies == Player.NONE;		
 	}
-	
+
+	/**
+	 * Set the graphical representation of this Cell.
+	 * @param circle
+	 */
 	public void setCircle(Circle circle) {
 		this.circle = circle;
 	}
-	
+
+	/**
+	 * @return The graphical representation of this Cell.
+	 */
 	public Circle getCircle() {
 		return circle;
 	}

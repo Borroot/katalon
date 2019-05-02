@@ -1,11 +1,14 @@
 package game.modes;
 
-import game.gui.GuiController;
 import game.logic.Board;
 import game.logic.Logic;
 import game.logic.Player;
 import game.logic.Position;
 
+/**
+ * X vs X gamemode where X can be either a player or a computer.
+ * @author Bram Pulles
+ */
 public abstract class XvX {
 
 	protected Board board = new Board();
