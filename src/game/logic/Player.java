@@ -5,5 +5,16 @@ package game.logic;
  * @author Bram Pulles
  */
 public enum Player {
-	NONE, YELLOW, RED;
+	NONE("."), YELLOW("Y"), RED("R");
+
+	private String string;
+
+	Player(String string){
+		this.string = string;
+	}
+
+	@Override
+	public String toString(){
+		return string;
+	}
 }

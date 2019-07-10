@@ -5,21 +5,20 @@ import java.net.URL;
 
 import game.gui.GuiController;
 import game.logic.Board;
+import game.modes.CvCGameMode;
 import game.modes.PvPGameMode;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
 /**
- * This class starts the right gamemode
+ * This class starts the right gamemode.
  * @author Bram Pulles
  */
 public class GameController {
 	
-	private GuiController gui;
-	
 	public GameController() {
-		guiGame();
-		new PvPGameMode(gui);
+//		new PvPGameMode(guiGame());
+		new CvCGameMode();
 	}
 	
 	
@@ -28,7 +27,7 @@ public class GameController {
 	 * Then the general GuiController (gui) is set to the controller of the FXML loader.
 	 * At last the screen is initialized (in the correct GuiController).
 	 */
-	private void guiGame() {
+	private GuiController guiGame() {
 		URL location = GuiController.class.getResource("/Screen.fxml");
 		FXMLLoader fxmlLoader = new FXMLLoader(location);
 		
@@ -38,12 +37,13 @@ public class GameController {
 			root = fxmlLoader.load();
 		} catch (IOException e) {
 			System.out.println("Could not load the fxml file: " + location);
-			System.out.println(e.getCause());
+			e.printStackTrace();
 			System.exit(1);
 		}
 		
-		gui = fxmlLoader.getController();
-		
+		GuiController gui = fxmlLoader.getController();
 		gui.initiateScreen(root);
+
+		return gui;
 	}
 }

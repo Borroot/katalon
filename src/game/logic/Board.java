@@ -2,6 +2,9 @@ package game.logic;
 
 import java.util.Arrays;
 
+import static game.logic.Player.NONE;
+import static game.logic.Player.YELLOW;
+
 /**
  * This class represents a playing board for Katalon.
  * @author Bram Pulles
@@ -87,5 +90,28 @@ public class Board {
 	 */
 	public Cell[] getCellsArray() {
 		return cells;
+	}
+
+	/**
+	 * @param i the cellnumber
+	 * @return the string representation of the player which is occupying the given cell.
+	 */
+	private String p(int i){
+		return cells[i].getOccupy().toString();
+	}
+
+	@Override
+	public String toString(){
+		StringBuilder b = new StringBuilder();
+
+		b.append(p(0) + "   " + p(1) + "   " + p(5) + "   " + p(6) + "\n");
+		b.append("  " + p(2) + "       " + p(7) + "\n");
+		b.append(p(3) + "   " + p(4) + "   " + p(8) + "   " + p(9) + "\n");
+		b.append("      " + p(20) + "\n");
+		b.append(p(10) + "   " + p(11) + "   " + p(15) + "   " + p(16) + "\n");
+		b.append("  " + p(12) + "       " + p(17) + "\n");
+		b.append(p(13) + "   " + p(14) + "   " + p(18) + "   " + p(19) + "\n");
+
+		return b.toString();
 	}
 }

@@ -30,14 +30,11 @@ public class PvPGameMode extends XvX{
 	 * Whenever a circle is clicked the method to make the move is called.
 	 */
 	private void setListenerCircleClicked() {
-		gui.getCircleNumberProperty().addListener(new ChangeListener<Object>(){
-			@Override
-			public void changed(ObservableValue<?> o, Object oldVal, Object cellNumber) {
-		        if((int)cellNumber == -1)
-		        	return; 
-		        else
-		        	move((int)cellNumber);
-			}
+		gui.getCircleNumberProperty().addListener((ChangeListener<Object>) (o, oldVal, cellNumber) -> {
+			if((int)cellNumber == -1)
+				return;
+			else
+				move((int)cellNumber);
 		});
 	}
 
@@ -46,23 +43,20 @@ public class PvPGameMode extends XvX{
 	 * The nextPos is set whenever the player choose a square.
 	 */
 	private void setListenerChooseSquare(){
-		gui.getChosenSquareProperty().addListener(new ChangeListener<Object>() {
-			@Override
-			public void changed(ObservableValue<?> o, Object oldVal, Object chosenSquare) {
-				if((int)chosenSquare == -1)
-					return;
-				else{
-					// Check which cellNumber is colored.
-					int cellNumber = -1;
+		gui.getChosenSquareProperty().addListener((ChangeListener<Object>) (o, oldVal, chosenSquare) -> {
+			if((int)chosenSquare == -1)
+				return;
+			else{
+				// Check which cellNumber is colored.
+				int cellNumber = -1;
 
-				    Cell[] cells = PvPGameMode.super.board.getCellsArray();
-				    for(Cell cell : cells)
-				    	if(!cell.isFree())
-				    		cellNumber = cell.getId();
+				Cell[] cells = PvPGameMode.super.board.getCellsArray();
+				for(Cell cell : cells)
+					if(!cell.isFree())
+						cellNumber = cell.getId();
 
-				    // The next position is calculated with the chosen square and the chosen cellNumber.
-				   	setNextPos(Logic.getPos(cellNumber, Position.getPos((int)chosenSquare)));
-				}
+				// The next position is calculated with the chosen square and the chosen cellNumber.
+				   setNextPos(Logic.getPos(cellNumber, Position.getPos((int)chosenSquare)));
 			}
 		});
 	}
@@ -72,12 +66,9 @@ public class PvPGameMode extends XvX{
 	 * Whenever the player clicks on the winscreen this function calls the resetGame function.
 	 */
 	private void setListenerReset(){
-		gui.getResetProperty().addListener(new ChangeListener<Object>() {
-			@Override
-			public void changed(ObservableValue<?> o, Object oldVal, Object newVal) {
-				if((Boolean)newVal){
-				    resetGame();
-				}
+		gui.getResetProperty().addListener((ChangeListener<Object>) (o, oldVal, newVal) -> {
+			if((Boolean)newVal){
+				resetGame();
 			}
 		});
 	}
