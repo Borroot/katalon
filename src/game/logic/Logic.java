@@ -84,9 +84,14 @@ public class Logic {
 		return nextPos == getSquare(cellNumber);
 	}
 
+	/**
+	 * @param player
+	 * @return the other player.
+	 */
 	public static Player otherPlayer(Player player){
 	    return (player == Player.RED)? Player.YELLOW : Player.RED;
 	}
+
 	/**
 	 * @param board
 	 * @param onTurn This is the person who did NOT make the last move.

@@ -139,6 +139,10 @@ public class GuiController {
 		titleScreen();
 	}
 
+	/**
+	 * Set the window to the selected node, only this node will be visible.
+	 * @param node
+	 */
 	public void setScreen(Node node){
 		for(Node child : root.getChildren()){
 			if(child.equals(node))
@@ -147,6 +151,7 @@ public class GuiController {
 				child.setVisible(false);
 		}
 	}
+
 	/**
 	 * Set the window to the title screen.
 	 */

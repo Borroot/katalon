@@ -56,7 +56,7 @@ public class PvPGameMode extends XvX{
 						cellNumber = cell.getId();
 
 				// The next position is calculated with the chosen square and the chosen cellNumber.
-				   setNextPos(Logic.getPos(cellNumber, Position.getPos((int)chosenSquare)));
+			   	setNextPos(Logic.getPos(cellNumber, Position.getPos((int)chosenSquare)));
 			}
 		});
 	}

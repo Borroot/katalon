@@ -55,7 +55,7 @@ public abstract class XvX {
 	/**
 	 * Change the onTurn to the next player.
 	 */
-	private void changeTurn(){
+	protected void changeTurn(){
 	    onTurn = Logic.otherPlayer(onTurn);
 	}
 
