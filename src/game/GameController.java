@@ -17,8 +17,8 @@ import javafx.scene.Parent;
 public class GameController {
 	
 	public GameController() {
-//		new PvPGameMode(guiGame());
-		new CvCGameMode();
+		new PvPGameMode(guiGame());
+//		new CvCGameMode();
 	}
 	
 	
