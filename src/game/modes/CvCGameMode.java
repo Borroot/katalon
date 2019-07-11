@@ -7,6 +7,11 @@ import game.logic.Position;
 
 import java.util.ArrayList;
 
+/**
+ * Computer vs computer gamemode with a basic minimax algorithm.
+ * (This class is very messy atm, I am aware of this.)
+ * @author Bram Pulles
+ */
 public class CvCGameMode extends XvX {
 
 	public CvCGameMode(){
@@ -14,6 +19,9 @@ public class CvCGameMode extends XvX {
 		play();
 	}
 
+	/**
+	 * Play a game.
+	 */
 	private void play(){
 		System.out.println("NEW GAME:");
 
@@ -24,6 +32,9 @@ public class CvCGameMode extends XvX {
 		System.out.println("PLAYER: " + Logic.winner(board, onTurn) + " WON!");
 	}
 
+	/**
+	 * @return the best available move.
+	 */
 	private int findBestMove(){
 		int bestMove = -1;
 		int bestMoveValue = (isMaximizingPlayer(onTurn))? Integer.MIN_VALUE : Integer.MAX_VALUE;
@@ -50,7 +61,7 @@ public class CvCGameMode extends XvX {
 			}
 		}
 
-		if(bestMove == -1){
+		if(bestMove == -1){ // If there is no good move (i.e. guaranteed loss) then take a random move.
 			for(int i = 0; i < board.size(); i++){
 				if(Logic.validMove(board, onTurn, i, lastCellNumber, nextPos)){
 					bestMove = i;
@@ -60,6 +71,9 @@ public class CvCGameMode extends XvX {
 		return bestMove;
 	}
 
+	/**
+	 * @return the heuristic value of the current board.
+	 */
 	private int heuristic(){
 		if(Logic.gameIsOver(board, onTurn)){
 			return (Logic.winner(board, onTurn) == Player.RED)? Integer.MAX_VALUE : Integer.MIN_VALUE;
@@ -76,6 +90,11 @@ public class CvCGameMode extends XvX {
 		return value;
 	}
 
+	/**
+	 * A basic minimax algortihm.
+	 * @param depth
+	 * @return the value of the current board.
+	 */
 	private int minimax(int depth){
 		if(Logic.gameIsOver(board, onTurn) || depth >= 8){
 			return heuristic();
@@ -118,6 +137,9 @@ public class CvCGameMode extends XvX {
 		}
 	}
 
+	/**
+	 * @return all the available moves.
+	 */
 	private ArrayList<Integer> availableMoves(){
 		ArrayList<Integer> moves = new ArrayList<>();
 		for(int i = 0; i < board.size(); i++) {
@@ -128,6 +150,10 @@ public class CvCGameMode extends XvX {
 		return moves;
 	}
 
+	/**
+	 * @param player
+	 * @return if the player is the maximizing player.
+	 */
 	private boolean isMaximizingPlayer(Player player){
 		return player == Player.RED;
 	}
